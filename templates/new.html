@@ -1,11 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Project</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title%} New Page {% endblock %}
+
+{% block content %}
+<div class="h-full flex items-center justify-center text-text">
+    <div class="flex-1 flex items-end flex-col">
+        <p class="text-lg">No project selected</p>
+        <p class="text-text/50">Create a new project</p>
+        <p class="text-text/50">or open an existing one</p>
+    </div>
+    <div class="m-4 border border-accent/20 h-[50%]"></div>
+    <div class="flex-1 p-4">
+        <ul class="list-disc">
+            <li>Create a <a href="new-project" class="text-accent hover:underline transition-all cursor-pointer">new
+                    project</a></li>
+            <li>Open recent project</li>
+            <ul class="list-disc list-inside">
+                <li>
+                    <a href='/projects/project-1' class="text-text/50  hover:text-accent hover:underline cursor-pointer">Project 1</a>
+                </li>
+            </ul>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

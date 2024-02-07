@@ -1,10 +1,27 @@
+{% from 'macros/dropdown.html' import dropdown_menu %}
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='css/index.css') }}"
+    />
   </head>
-  <body></body>
+  <body class="bg-bodyBackground h-screen">
+    <nav class="bg-accent text-black">
+      {{ dropdown_menu("nav-bar-new", "File", [ 
+        {'href': '#', 'text': 'New project', 'target': ''},
+        {'href': '/new', 'text': 'New window', 'target': '_blank'}, 
+        {'href': '#', 'text': 'Open Existing', 'target': ''},
+        {'href': '#', 'text': 'Sign out', 'target': ''} 
+      ]) }}
+    </nav>
+    {% block content %}{% endblock %}
+  </body>
 </html>

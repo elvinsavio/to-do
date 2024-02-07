@@ -11,4 +11,5 @@ def redirect_to_new():
 
 @app.route('/new')
 def new_project():
-    return render_template('new.html', title="New project")
+    return render_template('new.html')
+
