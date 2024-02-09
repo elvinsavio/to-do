@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title%} New Project {% endblock %}
+
+{% block content %}
+<script>
+
+</script>
+
+<div class="flex items-center justify-center h-full">
+    <div class="bg-background px-10 py-5 rounded text-white flex flex-col gap-2">
+        <h1 class="font-bold text-xl">Create a new project</h1>
+        <div class="flex items-center justify-center">
+            <div class="border-t border-accent/50 w-full"></div>
+            <div class=" text-accent/50">x</div>
+            <div class="border-t border-accent/50 w-full"></div>
+          </div>          
+        <form>
+            <label>Name</label>
+            <input 
+                type="text" 
+                name="project-name" 
+                class="block w-full rounded-md border-2 placeholder:text-gray-400 p-2 m-1 focus:outline-none focus:border-2 focus:border-accent  text-black" 
+                placeholder="My New Project">
+                <span class="hidden">
+                    Your project will be saved as <span id="input-display" class="text-accent"></span>
+                </span>
+        </form>
+    </div>
+</div>
+{% endblock %}
