@@ -2,6 +2,7 @@ import os
 from database import get_existing_db, create_db
 import pytest
 
+
 @pytest.fixture
 def setup_data():
     db_dir = ".db"
@@ -12,6 +13,7 @@ def setup_data():
 
     os.remove(f"{db_dir}/{db_name}.sqlite3")
     os.rmdir(db_dir)
+
 
 def test_create_and_get_db(setup_data):
     db_name = setup_data  # Access db_name from the fixture
@@ -24,4 +26,3 @@ def test_create_and_get_db(setup_data):
 
     result = get_existing_db()
     assert result == [db_name]
-
