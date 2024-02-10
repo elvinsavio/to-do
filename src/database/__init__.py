@@ -1,6 +1,5 @@
 import sqlite3
 import os
-import fnmatch
 from sqlite3 import Connection
 from typing import Literal, List
 
@@ -46,7 +45,3 @@ def get_existing_db() -> List[str]:
             if filename.endswith(".sqlite3"):
                 files.append(filename.replace(".sqlite3", "").replace("-", " "))
     return files
-
-
-def get_conn(db_name: str) -> Connection:
-    pass
