@@ -1,6 +1,6 @@
 import os
-from database import get_existing_db, create_db
 import pytest
+from database import get_existing_db, create_db
 
 
 @pytest.fixture
