@@ -1,31 +1,86 @@
-{% extends "base.html" %}
-
-{% block title%} New Project {% endblock %}
-
-{% block content %}
-<script>
-
-</script>
+{% extends "base.html" %} {% block title%} New Project {% endblock %} {% block
+content %}
+<script></script>
 
 <div class="flex items-center justify-center h-full">
-    <div class="bg-background px-10 py-5 rounded text-white flex flex-col gap-2">
-        <h1 class="font-bold text-xl">Create a new project</h1>
-        <div class="flex items-center justify-center">
-            <div class="border-t border-accent/50 w-full"></div>
-            <div class=" text-accent/50">x</div>
-            <div class="border-t border-accent/50 w-full"></div>
-          </div>          
-        <form>
-            <label>Name</label>
-            <input 
-                type="text" 
-                name="project-name" 
-                class="block w-full rounded-md border-2 placeholder:text-gray-400 p-2 m-1 focus:outline-none focus:border-2 focus:border-accent  text-black" 
-                placeholder="My New Project">
-                <span class="hidden">
-                    Your project will be saved as <span id="input-display" class="text-accent"></span>
-                </span>
-        </form>
+  <div
+    class="bg-background/50 px-4 py-8 max-w-[300px] rounded text-white flex flex-col gap-5 justify-between"
+  >
+    <div>
+      <h1 class="font-bold text-xl">Create a new project</h1>
+      <div class="flex items-center justify-center">
+        <div class="border-t border-accent/50 w-full"></div>
+        <div class="text-accent/50">x</div>
+        <div class="border-t border-accent/50 w-full"></div>
+      </div>
     </div>
+    <form class="" action="/new-project" method="post">
+      <label>Name</label>
+      <input
+        id="project-name"
+        type="text"
+        name="project-name"
+        value="{{input}}"
+        class="block w-full rounded-md border-2 placeholder:text-gray-400 p-2 mb-2 focus:outline-none focus:border-2 focus:border-accent text-black"
+        placeholder="My New Project"
+      />
+      <span class="text-xs text-text/50 break-words">
+        Your project will be saved as
+        <span id="input-display" class="text-accent/80">my-new-project</span>
+      </span>
+      <div class="flex justify-end gap-1 mt-5">
+        <button
+          class="p-1 bg-red-500 rounded text-white px-3 focus:outline-red-500"
+          onclick="location.href='/'"
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="p-1 bg-accent rounded text-white px-3 focus:outline-accent"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+  {% if err %}
+  <div
+    class=" absolute bottom-10 w-96 flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+    role="alert"
+  >
+    <svg
+      class="flex-shrink-0 inline w-4 h-4 me-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+      />
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Failed!</span>
+      {{ err }}
+    </div>
+  </div>
+  {% endif %}
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nameField = document.getElementById("project-name");
+    const nameDisplay = document.getElementById("input-display");
+
+    nameField.addEventListener("input", (e) => {
+      let formattedValue = e.target.value;
+      if (formattedValue === "") formattedValue = "My new project";
+      formattedValue = formattedValue.toLowerCase().trim().replaceAll(" ", "-");
+      nameDisplay.innerText = formattedValue;
+    });
+  });
+</script>
 {% endblock %}

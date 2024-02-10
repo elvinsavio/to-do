@@ -1,5 +1,5 @@
-from flask import Flask, redirect, render_template
-from markupsafe import escape
+from flask import Flask, redirect, render_template, request
+from methods import create_new_project
 
 app = Flask(__name__)
 
@@ -14,6 +14,9 @@ def new_app():
     return render_template("new.html")
 
 
-@app.route("/new-project")
+@app.route("/new-project", methods=["GET", "POST"])
 def new_project():
-    return render_template("new-project.html")
+    if request.method == "GET":
+        return render_template("new-project.html")
+    if request.method == "POST":
+        return create_new_project()
