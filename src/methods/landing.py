@@ -4,4 +4,4 @@ from flask import render_template
 
 def get_landing_page():
     res = get_existing_db()
-    return render_template("new.html", existing_projects=res)
+    return render_template("landing.html", existing_projects=res)

@@ -4,7 +4,7 @@ content %}
 
 <div class="flex items-center justify-center h-full">
   <div
-    class="bg-background/50 px-4 py-8 max-w-[300px] rounded text-white flex flex-col gap-5 justify-between"
+    class="bg-background/50 px-4 py-8 w-[300px] rounded text-white flex flex-col gap-5 justify-between"
   >
     <div>
       <h1 class="font-bold text-xl">Create a new project</h1>
@@ -20,7 +20,7 @@ content %}
         id="project-name"
         type="text"
         name="project-name"
-        value="{{input}}"
+        value="{{input.replace('-', ' ')}}"
         class="block w-full rounded-md border-2 placeholder:text-gray-400 p-2 mb-2 focus:outline-none focus:border-2 focus:border-accent text-black"
         placeholder="My New Project"
       />
