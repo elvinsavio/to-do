@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-from methods import create_new_project
+from methods import new_project, get_landing_page
 
 app = Flask(__name__)
 
@@ -10,13 +10,9 @@ def redirect_to_new():
 
 
 @app.route("/new")
-def new_app():
-    return render_template("new.html")
-
+def landing_route():
+    return get_landing_page()
 
 @app.route("/new-project", methods=["GET", "POST"])
-def new_project():
-    if request.method == "GET":
-        return render_template("new-project.html")
-    if request.method == "POST":
-        return create_new_project()
+def new_project_route():
+    return new_project()

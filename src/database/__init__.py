@@ -1,7 +1,8 @@
 import sqlite3
 import os
+import fnmatch
 from sqlite3 import Connection
-from typing import Literal
+from typing import Literal, List
 
 
 def create_db(db_name: str) -> Literal["ok", "err", "already_exists"]:
@@ -23,12 +24,28 @@ def create_db(db_name: str) -> Literal["ok", "err", "already_exists"]:
         os.makedirs(db_path)
 
     if os.path.exists(f"{db_path}/{db_name}.sqlite3"):
-        return 'already_exists'
+        return "already_exists"
     try:
         sqlite3.connect(database=f".db/{db_name}.sqlite3")
         return "ok"
     except sqlite3.Error:
         return "Err"
+
+
+def get_existing_db() -> List[str]:
+    """
+    Retrieve a list of existing SQLite database files with the '.sqlite3' extension
+    within the '.db/' directory and its subdirectories.
+
+    Returns:
+    - files (List[str]): List of file paths of existing SQLite database files.
+    """
+    files = []
+    for _, _, filenames in os.walk(r".db/"):
+        for filename in filenames:
+            if filename.endswith(".sqlite3"):
+                files.append(filename.replace(".sqlite3", "").replace("-", " "))
+    return files
 
 
 def get_conn(db_name: str) -> Connection:

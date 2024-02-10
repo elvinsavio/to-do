@@ -47,7 +47,7 @@ content %}
   </div>
   {% if err %}
   <div
-    class=" absolute bottom-10 w-96 flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+    class="absolute bottom-10 w-96 flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
     role="alert"
   >
     <svg
@@ -74,6 +74,11 @@ content %}
   document.addEventListener("DOMContentLoaded", function () {
     const nameField = document.getElementById("project-name");
     const nameDisplay = document.getElementById("input-display");
+
+    let formattedValue = nameField.value;
+    if (formattedValue === "") formattedValue = "My new project";
+    formattedValue = formattedValue.toLowerCase().trim().replaceAll(" ", "-");
+    nameDisplay.innerText = formattedValue;
 
     nameField.addEventListener("input", (e) => {
       let formattedValue = e.target.value;

@@ -1,1 +1,2 @@
-from .create_new_project import create_new_project
+from .new_project import new_project
+from .landing import get_landing_page
