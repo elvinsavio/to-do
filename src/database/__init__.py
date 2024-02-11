@@ -30,7 +30,7 @@ def create_db(db_name: str) -> Literal["ok", "err", "already_exists"]:
         return "Err"
 
 
-def get_existing_db() -> List[str]:
+def get_existing_db(limit: int = None) -> List[str]:
     """
     Retrieve a list of existing SQLite database files with the '.sqlite3' extension
     within the '.db/' directory and its subdirectories.
@@ -43,4 +43,5 @@ def get_existing_db() -> List[str]:
         for filename in filenames:
             if filename.endswith(".sqlite3"):
                 files.append(filename.replace(".sqlite3", "").replace("-", " "))
+
     return files

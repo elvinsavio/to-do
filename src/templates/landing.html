@@ -1,8 +1,6 @@
-{% extends "base.html" %} {% block title%} New {% endblock %} {% block content
-%}
-<div
-  class="h-[calc(100%-28px)] flex items-center justify-center text-text sm:flex-row flex-col"
->
+{% extends "base.html" %} {% block title%} New {% endblock %} y
+{% block content%}
+<div class="h-[calc(100%-28px)] flex items-center justify-center text-text sm:flex-row flex-col">
   <div class="flex-1 flex justify-end flex-col sm:items-end">
     <p class="text-lg">No project selected</p>
     <p class="text-text/50">Create a new project</p>
@@ -13,23 +11,21 @@
     <ul class="list-disc">
       <li>
         Create a
-        <a
-          href="new-project"
-          class="text-accent hover:underline transition-all cursor-pointer"
-          >new project</a
-        >
+        <a href="new-project" class="text-accent hover:underline transition-all cursor-pointer">new project</a>
       </li>
       <li>Open recent project</li>
       <ul class="list-disc list-inside">
         {% for i in existing_projects %}
         <li>
-          <a
-            href='/projects/{{i.replace(" ", "-")}}'
-            class="text-text/50 hover:text-accent hover:underline cursor-pointer"
-            >{{i}}</a
-          >
+          <a href='/projects/{{i.replace(" ", "-")}}'
+            class="text-text/50 hover:text-accent hover:underline cursor-pointer">{{i}}</a>
         </li>
         {% endfor %}
+        {% if existing_projects|length == 0 %}
+        <li class="text-text/50">
+          No projects found
+        </li>
+        {% endif %}
       </ul>
     </ul>
   </div>

@@ -5,7 +5,7 @@ from database import get_existing_db, create_db
 
 @pytest.fixture
 def setup_data():
-    db_dir = ".db"
+    db_dir = ".db-test"
     db_name = "test_db"
 
     print("\nSetting up resources...")
