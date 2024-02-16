@@ -28,4 +28,4 @@ def new_project_route():
 
 @app.route('/project/<name>', methods=['GET'])
 def get_project_raoute(name):
-    return "uwu"
+    return "name"
