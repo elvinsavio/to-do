@@ -24,3 +24,8 @@ def new_project_route():
     - str: The response for creating a new project.
     """
     return new_project()
+
+
+@app.route('/project/<name>', methods=['GET'])
+def get_project_raoute(name):
+    return "uwu"
