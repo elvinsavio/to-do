@@ -17,9 +17,7 @@ func main() {
 
 	// GET /api/register
 	app.Get("/", func(c fiber.Ctx) error {
-		return c.Render("landing", fiber.Map{
-			"Title": "Hello, World!",
-		})
+		return c.Render("landing", fiber.Map{}, "_base")
 	})
 	log.Fatal(app.Listen(":3000"))
 }
