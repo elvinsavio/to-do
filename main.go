@@ -13,6 +13,8 @@ func main() {
 		Views: engine,
 	})
 
+	app.Static("/", "./static")
+
 	// GET /api/register
 	app.Get("/", func(c fiber.Ctx) error {
 		return c.Render("landing", fiber.Map{
