@@ -13,7 +13,9 @@ func main() {
 		Views: engine,
 	})
 
-	app.Static("/", "./static")
+	app.Static("/", "./static", fiber.Static{
+		CacheDuration: 0,
+	})
 
 	// GET /api/register
 	app.Get("/", func(c fiber.Ctx) error {
