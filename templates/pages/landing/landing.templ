@@ -1,0 +1,11 @@
+package template
+
+import (
+	Base "elvinsavio/todo/templates/pages/base"
+)
+
+templ Landing(name string) {
+	@Base.Base() {
+		<div>Hello, { name } 2</div>
+	}
+}

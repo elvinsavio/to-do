@@ -3,6 +3,7 @@ module elvinsavio/todo
 go 1.22.0
 
 require (
+	github.com/a-h/templ v0.2.598 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/gofiber/fiber/v3 v3.0.0-20240312090717-c51ff2967a60 // indirect
 	github.com/gofiber/template v1.8.3 // indirect

@@ -1,25 +1,29 @@
 package main
 
 import (
-	"log"
+	template "elvinsavio/todo/templates/pages/landing"
 
+	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v3"
-	"github.com/gofiber/template/html/v2"
+	"github.com/gofiber/fiber/v3/log"
+	"github.com/gofiber/fiber/v3/middleware/adaptor"
 )
 
 func main() {
-	engine := html.New("./templates/pages/", ".html")
-	app := fiber.New(fiber.Config{
-		Views: engine,
-	})
-
-	app.Static("/", "./static", fiber.Static{
-		CacheDuration: 0,
-	})
-
-	// GET /api/register
+	app := fiber.New()
+	app.Static("/", "./static")
 	app.Get("/", func(c fiber.Ctx) error {
-		return c.Render("landing", fiber.Map{}, "_base")
+
+		return Render(c, template.Landing())
 	})
+
 	log.Fatal(app.Listen(":3000"))
+}
+
+func Render(c fiber.Ctx, component templ.Component, options ...func(*templ.ComponentHandler)) error {
+	componentHandler := templ.Handler(component)
+	for _, o := range options {
+		o(componentHandler)
+	}
+	return adaptor.HTTPHandler(componentHandler)(c)
 }

@@ -25,3 +25,8 @@ tmp/
 
 # Node js
 node_modules
+
+
+# generated templ files
+templates/*/*/*.go
+templates/*/*/*.txt
