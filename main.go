@@ -7,11 +7,17 @@ import (
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/log"
 	"github.com/gofiber/fiber/v3/middleware/adaptor"
+	"github.com/gofiber/fiber/v3/middleware/cache"
 )
 
 func main() {
 	app := fiber.New()
 	app.Static("/", "./static")
+
+	app.Use(cache.New(cache.Config{
+		CacheControl: true,
+	}))
+
 	app.Get("/", func(c fiber.Ctx) error {
 
 		return Render(c, template.Landing())
