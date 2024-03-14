@@ -2,6 +2,7 @@ package main
 
 import (
 	template "elvinsavio/todo/templates/pages/landing"
+	types "elvinsavio/todo/types"
 
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v3"
@@ -19,8 +20,15 @@ func main() {
 	}))
 
 	app.Get("/", func(c fiber.Ctx) error {
-
-		return Render(c, template.Landing())
+		projects := []types.ProjectList{
+			{
+				Name:       "sample",
+				Path:       "sample-project",
+				LastOpened: "10-11-1998",
+				Created:    "10-11-1998",
+			},
+		}
+		return Render(c, template.Landing(projects))
 	})
 
 	log.Fatal(app.Listen(":3000"))
