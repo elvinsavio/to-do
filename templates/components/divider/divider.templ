@@ -1,0 +1,13 @@
+package template
+
+func getClass(orientation string) string {
+	if orientation == "horizontal" {
+		return "h-[1px] w-full"
+	} else {
+		return "h-full w-[1px]"
+	}
+}
+
+templ Divider(orientation string) {
+	<div class={ getClass(orientation) + "shrink-0 bg-border" }></div>
+}

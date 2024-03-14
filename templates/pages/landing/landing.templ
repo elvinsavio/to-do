@@ -2,10 +2,21 @@ package template
 
 import (
 	Base "elvinsavio/todo/templates/pages/base"
+	Components "elvinsavio/todo/templates/components"
 )
 
-templ Landing(name string) {
+templ Landing() {
 	@Base.Base() {
-		<div>Hello, { name } 2</div>
+		<div class="h-screen flex justify-center items-center min-w-[300px]">
+			@Components.Card("") {
+				@Components.Heading("heading", "Login")
+				@Components.Divider("horizontal")
+				@Components.Form() {
+					@Components.Input("text", "Email")
+					@Components.Input("password", "Password")
+				}
+			}
+		</div>
 	}
 }
+A
