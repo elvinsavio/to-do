@@ -578,14 +578,6 @@ video {
   }
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
-.ml-4 {
-  margin-left: 1rem;
-}
-
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -650,10 +642,6 @@ video {
   gap: 0.25rem;
 }
 
-.gap-2 {
-  gap: 0.5rem;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }
@@ -711,10 +699,6 @@ video {
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-
-.pt-2 {
-  padding-top: 0.5rem;
 }
 
 .text-lg {

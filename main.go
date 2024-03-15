@@ -27,6 +27,18 @@ func main() {
 				LastOpened: "10-11-1998",
 				Created:    "10-11-1998",
 			},
+			{
+				Name:       "test project 2",
+				Path:       "sample-project-2",
+				LastOpened: "10-11-1998",
+				Created:    "10-11-1998",
+			},
+			{
+				Name:       "rip off google",
+				Path:       "sample-rip-off",
+				LastOpened: "10-11-1998",
+				Created:    "10-11-1998",
+			},
 		}
 		return Render(c, template.Landing(projects))
 	})
