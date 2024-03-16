@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tailwind": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "tailwind": "npx tailwindcss -i ./views/static/css/input.css -o ./views/static/css/output.css --watch",
     "fiber": "~/go/bin/air",
     "templ": "~/go/bin/templ generate --watch",
     "dev" : "concurrently \"npm run tailwind\" \"npm run fiber\" \"npm run templ\"" 
