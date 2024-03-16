@@ -28,5 +28,8 @@ node_modules
 
 
 # generated templ files
-templates/*/*/*.go
-templates/*/*/*.txt
+views/*/*/*.go
+views/*/*/*.txt
+
+views/*/*.go
+views/*/*.txt

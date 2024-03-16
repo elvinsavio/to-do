@@ -1,5 +1,0 @@
-<div class=\"h-screen flex justify-center items-center\"><div class=\"card max-w-[90%] sm:max-w-[50%]\"><div class=\"container py-1\"><h1>Welcome to your projects managment toolkit!</h1><p class=\"text-muted-foreground\">Create a new projects or open an existing one</p></div><div class=\"separator-horizontal\"></div><div class=\"container flex flex-col md:flex-row gap-2\"><div class=\"container flex flex-col gap-2\"><a class=\"icon-link\" href=\"/new\">
-Create new project</a> <a class=\"icon-link\">
-View all projects</a> <a class=\"icon-link\">
-Help</a></div><div class=\"separator-vertical hidden md:block\"></div><div class=\"separator-horizontal md:hidden\"></div><div class=\"container flex flex-col gap-2\"><a class=\"icon-link\">
-Recent</a></div></div></div><div class=\"landing-image\"></div></div>
