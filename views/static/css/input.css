@@ -19,10 +19,17 @@
   a {
     @apply text-sm hover:text-primary transition-all cursor-pointer hover:underline underline-offset-2
   }
+
+  input {
+    @apply rounded bg-background border-border border p-1 focus:border-primary focus:ring-0 !outline-none
+  }
+  button {
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary/50 text-primary-foreground shadow hover:bg-primary h-9 px-4 py-2
+  }
 }
 
 .container {
-  @apply m-1
+  @apply p-1
 }
 
 .card {
@@ -41,7 +48,12 @@
 }
 
 .landing-image {
-  @apply absolute bottom-0 left-0  h-[20%] w-full bg-bottom bg-repeat-x -z-50;
+  @apply absolute bottom-0 left-0  h-[20%] w-full  bg-repeat-x -z-50;
   background-image: url("/images/bridges.png");
   background-size: contain;
+  background-position: right 70px bottom 0px;
+}
+
+.outline-button {
+  @apply bg-background border border-border hover:bg-white/10 
 }
