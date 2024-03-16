@@ -1,6 +1,9 @@
 package controller
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/adaptor"
@@ -15,7 +18,16 @@ func New(app *fiber.App) *fiber.App {
 
 	// New project page
 	app.Get("/new", func(c fiber.Ctx) error {
+		fmt.Println("hello world")
 		return Render(c, RenderNewPage())
+	})
+
+	app.Post("/new", func(c fiber.Ctx) error {
+		projectName := c.FormValue("name")
+		projectName = strings.Trim(projectName, " ")
+		projectName = strings.ReplaceAll(projectName, " ", "-")
+		fmt.Println("Project Name:", projectName)
+		return c.Redirect().To("/project/" + projectName)
 	})
 
 	return app
