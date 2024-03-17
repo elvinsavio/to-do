@@ -37,3 +37,7 @@ views/*/*.txt
 
 # output css file
 views/static/css/output.css
+
+
+# config file
+*.toml
