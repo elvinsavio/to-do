@@ -1,6 +1,7 @@
 package main
 
 import (
+	"elvinsavio/todo/config"
 	"elvinsavio/todo/controller"
 
 	"github.com/gofiber/fiber/v3"
@@ -9,6 +10,8 @@ import (
 )
 
 func main() {
+	config.LoadEnv()
+
 	app := fiber.New()
 	app.Static("/", "./views/static")
 
