@@ -3,6 +3,7 @@ package main
 import (
 	"elvinsavio/todo/config"
 	"elvinsavio/todo/controller"
+	"elvinsavio/todo/database"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/log"
@@ -11,6 +12,11 @@ import (
 
 func main() {
 	config.LoadEnv()
+
+	_, err := database.New()
+	if err != nil {
+		log.Fatalf("Failed to connect to Database", err)
+	}
 
 	app := fiber.New()
 	app.Static("/", "./views/static")

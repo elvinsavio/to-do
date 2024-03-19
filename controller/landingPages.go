@@ -13,6 +13,6 @@ func RenderLandingPage() templ.Component {
 	return LandingPage.Render(projects)
 }
 
-func RenderNewPage() templ.Component {
-	return NewProjectPage.Render()
+func RenderNewPage(err string) templ.Component {
+	return NewProjectPage.Render(err)
 }

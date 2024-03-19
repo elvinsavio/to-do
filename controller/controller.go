@@ -1,6 +1,7 @@
 package controller
 
 import (
+	model "elvinsavio/todo/model"
 	"fmt"
 	"strings"
 
@@ -19,14 +20,18 @@ func New(app *fiber.App) *fiber.App {
 	// New project page
 	app.Get("/new", func(c fiber.Ctx) error {
 		fmt.Println("hello world")
-		return Render(c, RenderNewPage())
+		return Render(c, RenderNewPage(""))
 	})
 
 	app.Post("/new", func(c fiber.Ctx) error {
 		projectName := c.FormValue("name")
 		projectName = strings.Trim(projectName, " ")
 		projectName = strings.ReplaceAll(projectName, " ", "-")
-		fmt.Println("Project Name:", projectName)
+		_, err := model.NewProject(projectName)
+		if err != nil {
+			return Render(c, RenderNewPage(err.Error()))
+		}
+
 		return c.Redirect().To("/project/" + projectName)
 	})
 
