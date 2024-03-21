@@ -13,14 +13,12 @@ func LoadEnv() {
 		log.Fatalf("Error loading TOML file: %s", err)
 	}
 
-	log.Println("Loading env files")
-
 	// Iterate over the keys and set environment variables
 	for key, value := range config.ToMap() {
 		// Convert value to string
 		strValue, ok := value.(string)
 		if !ok {
-			log.Printf("Error converting value to string for key: %s", key)
+			log.Fatalf("Error converting value to string for key: %s", key)
 			continue
 		}
 
