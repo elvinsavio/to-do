@@ -6,17 +6,17 @@ import (
 	Icon "elvinsavio/todo/views/icons"
 )
 
-templ Render(projects []types.ProjectList) {
+templ LandingPage(projects []types.ProjectList) {
 	@Base.BaseTemplate() {
 		<div class="h-screen flex justify-center items-center">
-			<div class="card max-w-[90%] sm:max-w-[50%]">
+			<div class="card max-w-[90%] sm:max-w-[70%]">
 				<div class="container py-1">
 					<h1>Welcome to your projects managment toolkit!</h1>
 					<p class="text-muted-foreground">Create a new projects or open an existing one</p>
 				</div>
 				<div class="separator-horizontal"></div>
-				<div class="container flex flex-col md:flex-row gap-2">
-					<div class="container flex flex-col gap-2">
+				<div class="flex flex-col md:flex-row gap-2">
+					<div class="container flex flex-col gap-2 flex-1">
 						<a class="icon-link" href="/new">
 							@Icon.IconNewProject()
 							Create new project
@@ -32,25 +32,28 @@ templ Render(projects []types.ProjectList) {
 					</div>
 					<div class="separator-vertical hidden md:block"></div>
 					<div class="separator-horizontal md:hidden"></div>
-					<div class="container flex flex-col gap-1">
-						<span class="flex justify-between">
+					<div class="container flex flex-col gap-1 flex-1">
+						<span class="flex justify-between items-center gap-2">
 							<p>
 								Recent
 							</p>
+							<hr/>
 							<p>
 								Last opened
 							</p>
 						</span>
 						<ul>
 							for _, item := range projects {
-								<li class="flex justify-between">
+								<li class="flex justify-between items-center gap-2">
 									<a href={ "project/" + templ.SafeURL(item.Name) }>> { item.Name }</a>
-									<hr/>
+									<hr class=""></hr>
+									<p class="text-xs">
 									if item.LastOpened != nil {
 										{ item.LastOpened.String() }
 									} else {
 										Never opened
 									}
+									</p>
 								</li>
 							}
 						</ul>
