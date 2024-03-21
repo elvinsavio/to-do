@@ -1,0 +1,15 @@
+package views
+
+import (
+	Base "elvinsavio/todo/views/pages/base"
+)
+
+templ Render() {
+	@Base.BaseTemplate() {
+		<div class="flex items-center justify-center h-screen w-full flex-col">
+			<h1 class="text-4xl">Page Not Found</h1>
+			<a href="/"> > Home</a>
+			<a onclick="history.back()"> > Back</a>
+		</div>
+	}
+}
