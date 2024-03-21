@@ -4,8 +4,21 @@ import (
 	types "elvinsavio/todo/types"
 	Base "elvinsavio/todo/views/pages/base"
 	Icon "elvinsavio/todo/views/icons"
+	"time"
+	"fmt"
 )
 
+script convertDateToString(date time.Time, id string) {
+	let tmp = document.getElementById(id)
+	tmp.innerHTML =  dateFns.formatRelative(date, new Date());
+}
+
+// func ConvertDateToString2(date time.Time) string {
+// 	if date.IsZero() {
+// 		return "Never opened"
+// 	}
+// 	return date.Local().Format("2006-01-02 15:04:05")
+// }
 templ LandingPage(projects []types.ProjectList) {
 	@Base.BaseTemplate() {
 		<div class="h-screen flex justify-center items-center">
@@ -34,29 +47,30 @@ templ LandingPage(projects []types.ProjectList) {
 					<div class="separator-horizontal md:hidden"></div>
 					<div class="container flex flex-col gap-1 flex-1">
 						<span class="flex justify-between items-center gap-2">
-							<p>
+							<h5>
 								Recent
-							</p>
+							</h5>
 							<hr/>
-							<p>
+							<h5>
 								Last opened
-							</p>
+							</h5>
 						</span>
 						<ul>
-							for _, item := range projects {
+							for id, item := range projects {
 								<li class="flex justify-between items-center gap-2">
-									<a href={ "project/" + templ.SafeURL(item.Name) }>> { item.Name }</a>
-									<hr class=""></hr>
-									<p class="text-xs">
-									if item.LastOpened != nil {
-										{ item.LastOpened.String() }
-									} else {
-										Never opened
-									}
+									<a href={ "project/" + templ.SafeURL(item.Name) }>{ item.Name }</a>
+									<hr class=""/>
+									<p class="text-xs text-muted-foreground" id={ "project-list-" + fmt.Sprintf("%v", id) }>
+										@convertDateToString(item.LastOpened, "project-list-"+fmt.Sprintf("%v", id))
 									</p>
 								</li>
 							}
 						</ul>
+						<span class="text-sm text-center text-muted-foreground">
+							if len(projects) == 0 {
+								No Projects found, <a>Create a new one to begin </a>
+							}
+						</span>
 					</div>
 				</div>
 			</div>
