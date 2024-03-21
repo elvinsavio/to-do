@@ -18,7 +18,7 @@ func New(app *fiber.App) *fiber.App {
 	// Landing page
 	app.Get("/", func(c fiber.Ctx) error {
 		project := model.Project{}
-		result, err := project.GetAllProjects()
+		result, err := project.GetAllProjects(5)
 		if err != nil {
 			// return Render(c, RenderLandingPage())
 			log.Fatalf("Failed to get projects")
