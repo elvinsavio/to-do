@@ -22,7 +22,7 @@ func New() (*mongo.Client, error) {
 	once.Do(func() {
 		uri := os.Getenv("MONGO_URI")
 		if uri == "" {
-			log.Fatalf("Mongo Uri not set.")
+			log.Fatalf("MONGO_URI not set.")
 		}
 		client, err = mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
 		if err != nil {

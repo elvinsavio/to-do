@@ -32,11 +32,28 @@ templ Render(projects []types.ProjectList) {
 					</div>
 					<div class="separator-vertical hidden md:block"></div>
 					<div class="separator-horizontal md:hidden"></div>
-					<div class="container flex flex-col gap-2">
-						<a class="icon-link">
-							@Icon.IconRecent()
-							Recent
-						</a>
+					<div class="container flex flex-col gap-1">
+						<span class="flex justify-between">
+							<p>
+								Recent
+							</p>
+							<p>
+								Last opened
+							</p>
+						</span>
+						<ul>
+							for _, item := range projects {
+								<li class="flex justify-between">
+									<a href={ "project/" + templ.SafeURL(item.Name) }>> { item.Name }</a>
+									<hr/>
+									if item.LastOpened != nil {
+										{ item.LastOpened.String() }
+									} else {
+										Never opened
+									}
+								</li>
+							}
+						</ul>
 					</div>
 				</div>
 			</div>

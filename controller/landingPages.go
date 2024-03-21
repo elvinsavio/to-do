@@ -8,8 +8,7 @@ import (
 	"github.com/a-h/templ"
 )
 
-func RenderLandingPage() templ.Component {
-	projects := []types.ProjectList{}
+func RenderLandingPage(projects []types.ProjectList) templ.Component {
 	return LandingPage.Render(projects)
 }
 

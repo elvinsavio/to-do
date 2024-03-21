@@ -2,8 +2,9 @@ package controller
 
 import (
 	model "elvinsavio/todo/model"
-	"fmt"
+	"log"
 	"strings"
+	"time"
 
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v3"
@@ -14,12 +15,17 @@ func New(app *fiber.App) *fiber.App {
 
 	// Landing page
 	app.Get("/", func(c fiber.Ctx) error {
-		return Render(c, RenderLandingPage())
+		project := model.Project{}
+		result, err := project.GetAllProjects()
+		if err != nil {
+			// return Render(c, RenderLandingPage())
+			log.Fatalf("Failed to get projects")
+		}
+		return Render(c, RenderLandingPage(result))
 	})
 
 	// New project page
 	app.Get("/new", func(c fiber.Ctx) error {
-		fmt.Println("hello world")
 		return Render(c, RenderNewPage(""))
 	})
 
@@ -27,7 +33,15 @@ func New(app *fiber.App) *fiber.App {
 		projectName := c.FormValue("name")
 		projectName = strings.Trim(projectName, " ")
 		projectName = strings.ReplaceAll(projectName, " ", "-")
-		_, err := model.NewProject(projectName)
+
+		project := model.Project{
+			Name:       projectName,
+			Theme:      "dark",
+			CreatedAt:  time.Now(),
+			LastOpened: nil,
+		}
+
+		_, err := project.NewProject()
 		if err != nil {
 			return Render(c, RenderNewPage(err.Error()))
 		}

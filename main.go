@@ -24,7 +24,10 @@ func main() {
 	app = controller.New(app)
 
 	app.Use(cache.New(cache.Config{
-		CacheControl: true,
+		CacheControl: false,
+		Next: func(c fiber.Ctx) bool {
+			return c.Query("noCache") == "true"
+		},
 	}))
 
 	log.Fatal(app.Listen(":3000"))

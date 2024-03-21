@@ -1,8 +1,9 @@
 package types
 
+import "time"
+
 type ProjectList struct {
 	Name       string
-	Path       string
-	LastOpened string
-	Created    string
+	CreatedAt  time.Time
+	LastOpened *time.Time
 }
