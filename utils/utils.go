@@ -30,6 +30,11 @@ func ErrorHandler(ctx fiber.Ctx, err error) error {
 
 	fmt.Println(code)
 
+	if code == 404 {
+		ctx.Redirect().To("/not-found")
+		return nil
+	}
+
 	// Send custom error page
 	err = ctx.Status(code).SendFile(fmt.Sprintf("./%d.html", code))
 	if err != nil {

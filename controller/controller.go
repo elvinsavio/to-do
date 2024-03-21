@@ -2,10 +2,8 @@ package controller
 
 import (
 	model "elvinsavio/todo/model"
-	LandingPage "elvinsavio/todo/views/pages/landing"
-	NewProjectPage "elvinsavio/todo/views/pages/new"
-
 	"elvinsavio/todo/utils"
+	views "elvinsavio/todo/views/pages"
 
 	"log"
 	"strings"
@@ -25,12 +23,12 @@ func New(app *fiber.App) *fiber.App {
 			// return Render(c, RenderLandingPage())
 			log.Fatalf("Failed to get projects")
 		}
-		return utils.Render(c, LandingPage.Render(result))
+		return utils.Render(c, views.LandingPage(result))
 	})
 
 	// New project page
 	app.Get("/new", func(c fiber.Ctx) error {
-		return utils.Render(c, NewProjectPage.Render(""))
+		return utils.Render(c, views.NewPage(""))
 	})
 
 	app.Post("/new", func(c fiber.Ctx) error {
@@ -47,10 +45,14 @@ func New(app *fiber.App) *fiber.App {
 
 		_, err := project.NewProject()
 		if err != nil {
-			return utils.Render(c, NewProjectPage.Render(err.Error()))
+			return utils.Render(c, views.NewPage(err.Error()))
 		}
 
 		return c.Redirect().To("/project/" + projectName)
+	})
+
+	app.Get("/not-found", func(c fiber.Ctx) error {
+		return utils.Render(c, views.NotFoundPage())
 	})
 
 	return app

@@ -36,6 +36,9 @@
     @apply text-sm
   }
 
+  hr {
+    @apply flex-grow
+  }
 
 }
 
@@ -67,4 +70,11 @@
 
 .outline-button {
   @apply bg-background border border-border hover:bg-white/10 
+}
+
+.not-found-image {
+  @apply absolute bottom-0 left-0  h-screen w-full  bg-no-repeat -z-50;
+  background-image: url("/images/404.png");
+  background-size: contain;
+  background-position: right 50% top 0px;
 }
