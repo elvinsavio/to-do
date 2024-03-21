@@ -4,6 +4,7 @@ import (
 	"elvinsavio/todo/config"
 	"elvinsavio/todo/controller"
 	"elvinsavio/todo/database"
+	"elvinsavio/todo/utils"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/log"
@@ -18,10 +19,11 @@ func main() {
 		log.Fatalf("Failed to connect to Database", err)
 	}
 
-	app := fiber.New()
-	app.Static("/", "./views/static")
+	app := fiber.New(fiber.Config{
+		ErrorHandler: utils.ErrorHandler,
+	})
 
-	app = controller.New(app)
+	app.Static("/", "./views/static")
 
 	app.Use(cache.New(cache.Config{
 		CacheControl: false,
@@ -29,6 +31,8 @@ func main() {
 			return c.Query("noCache") == "true"
 		},
 	}))
+
+	app = controller.New(app)
 
 	log.Fatal(app.Listen(":3000"))
 }
