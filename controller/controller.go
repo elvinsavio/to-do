@@ -2,16 +2,20 @@ package controller
 
 import (
 	model "elvinsavio/todo/model"
+	LandingPage "elvinsavio/todo/views/pages/landing"
+	NewProjectPage "elvinsavio/todo/views/pages/new"
+
+	"elvinsavio/todo/utils"
+
 	"log"
 	"strings"
 	"time"
 
-	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v3"
-	"github.com/gofiber/fiber/v3/middleware/adaptor"
 )
 
 func New(app *fiber.App) *fiber.App {
+	// middle ware
 
 	// Landing page
 	app.Get("/", func(c fiber.Ctx) error {
@@ -21,12 +25,12 @@ func New(app *fiber.App) *fiber.App {
 			// return Render(c, RenderLandingPage())
 			log.Fatalf("Failed to get projects")
 		}
-		return Render(c, RenderLandingPage(result))
+		return utils.Render(c, LandingPage.Render(result))
 	})
 
 	// New project page
 	app.Get("/new", func(c fiber.Ctx) error {
-		return Render(c, RenderNewPage(""))
+		return utils.Render(c, NewProjectPage.Render(""))
 	})
 
 	app.Post("/new", func(c fiber.Ctx) error {
@@ -43,19 +47,11 @@ func New(app *fiber.App) *fiber.App {
 
 		_, err := project.NewProject()
 		if err != nil {
-			return Render(c, RenderNewPage(err.Error()))
+			return utils.Render(c, NewProjectPage.Render(err.Error()))
 		}
 
 		return c.Redirect().To("/project/" + projectName)
 	})
 
 	return app
-}
-
-func Render(c fiber.Ctx, component templ.Component, options ...func(*templ.ComponentHandler)) error {
-	componentHandler := templ.Handler(component)
-	for _, o := range options {
-		o(componentHandler)
-	}
-	return adaptor.HTTPHandler(componentHandler)(c)
 }
