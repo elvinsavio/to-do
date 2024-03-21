@@ -28,8 +28,6 @@ func ErrorHandler(ctx fiber.Ctx, err error) error {
 		code = e.Code
 	}
 
-	fmt.Println(code)
-
 	if code == 404 {
 		ctx.Redirect().To("/not-found")
 		return nil
