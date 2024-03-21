@@ -62,7 +62,7 @@ func (p *Project) NewProject() (bool, error) {
 	return true, nil
 }
 
-func (p *Project) GetAllProjects() ([]types.ProjectList, error) {
+func (p *Project) GetAllProjects(limit int) ([]types.ProjectList, error) {
 	prefix := os.Getenv("MONGO_PREFIX")
 	if prefix == "" {
 		return nil, fmt.Errorf("MONGO_PREFIX environment variable not set")
