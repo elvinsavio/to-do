@@ -40,7 +40,7 @@ func New(app *fiber.App) *fiber.App {
 			Name:       projectName,
 			Theme:      "dark",
 			CreatedAt:  time.Now(),
-			LastOpened: nil,
+			LastOpened: time.Time{},
 		}
 
 		_, err := project.NewProject()

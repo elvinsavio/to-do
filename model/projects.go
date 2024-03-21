@@ -18,7 +18,7 @@ type Project struct {
 	Name       string
 	Theme      string
 	CreatedAt  time.Time
-	LastOpened *time.Time
+	LastOpened time.Time
 }
 
 func (p *Project) NewProject() (bool, error) {
@@ -50,8 +50,8 @@ func (p *Project) NewProject() (bool, error) {
 	collection := client.Database(p.Name).Collection("settings")
 
 	settings := bson.D{
-		{Key: "theme", Value: p.Theme},
-		{Key: "createdAt", Value: p.CreatedAt},
+		{Key: "Theme", Value: p.Theme},
+		{Key: "CreatedAt", Value: p.CreatedAt},
 		{Key: "LastOpened", Value: p.LastOpened},
 	}
 
@@ -82,15 +82,16 @@ func (p *Project) GetAllProjects(limit int) ([]types.ProjectList, error) {
 	for _, db := range databases {
 		if strings.HasPrefix(db, prefix) {
 			var settings struct {
-				LastOpened *time.Time `bson:"lastOpened"`
-				CreatedAt  time.Time  `bson:"createdAt"`
+				LastOpened time.Time `bson:"LastOpened"`
+				CreatedAt  time.Time `bson:"CreatedAt"`
 			}
 
 			err = client.Database(db).Collection("settings").FindOne(context.TODO(), bson.D{}).Decode(&settings)
 			if err != nil {
-				log.Printf("Error fetching settings for database %s: %v", db, err)
+				log.Fatalf("Error fetching settings for database %s: %v", db, err)
 				continue // Skip this database and proceed to the next
 			}
+			fmt.Println(settings.LastOpened)
 
 			name := strings.Join(strings.Split(db, prefix+"-"), "")
 			projects = append(projects, types.ProjectList{
@@ -100,8 +101,6 @@ func (p *Project) GetAllProjects(limit int) ([]types.ProjectList, error) {
 			})
 		}
 	}
-
-	fmt.Println(projects)
 
 	return projects, nil
 }

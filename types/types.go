@@ -5,5 +5,5 @@ import "time"
 type ProjectList struct {
 	Name       string
 	CreatedAt  time.Time
-	LastOpened *time.Time
+	LastOpened time.Time
 }
