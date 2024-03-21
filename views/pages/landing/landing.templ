@@ -10,7 +10,14 @@ import (
 
 script convertDateToString(date time.Time, id string) {
 	let tmp = document.getElementById(id)
+	const oneMonthAgo = dateFns.subMonths(new Date(), 1);
+	const isOlderThanMonth =  dateFns.isBefore(date, oneMonthAgo);
+
+	if(isOlderThanMonth){
+	tmp.innerHTML = "more than a month"
+	}else{
 	tmp.innerHTML =  dateFns.formatRelative(date, new Date());
+	}
 }
 
 // func ConvertDateToString2(date time.Time) string {
