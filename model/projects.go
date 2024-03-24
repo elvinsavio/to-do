@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 	"strings"
 	"time"
 
@@ -100,6 +101,15 @@ func (p *Project) GetAllProjects(limit int) ([]types.ProjectList, error) {
 				CreatedAt:  settings.CreatedAt,
 			})
 		}
+	}
+
+	sort.Slice(projects, func(i, j int) bool {
+		return projects[i].LastOpened.After(projects[j].LastOpened)
+	})
+
+	// Apply limit if specified
+	if limit > 0 && len(projects) > limit {
+		projects = projects[:limit]
 	}
 
 	return projects, nil
