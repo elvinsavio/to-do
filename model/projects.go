@@ -92,7 +92,6 @@ func (p *Project) GetAllProjects(limit int) ([]types.ProjectList, error) {
 				log.Fatalf("Error fetching settings for database %s: %v", db, err)
 				continue // Skip this database and proceed to the next
 			}
-			fmt.Println(settings.LastOpened)
 
 			name := strings.Join(strings.Split(db, prefix+"-"), "")
 			projects = append(projects, types.ProjectList{
