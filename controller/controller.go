@@ -13,8 +13,6 @@ import (
 )
 
 func New(app *fiber.App) *fiber.App {
-	// middle ware
-
 	// Landing page
 	app.Get("/", func(c fiber.Ctx) error {
 		project := model.Project{}
@@ -24,6 +22,17 @@ func New(app *fiber.App) *fiber.App {
 			log.Fatalf("Failed to get projects")
 		}
 		return utils.Render(c, views.LandingPage(result))
+	})
+
+	// Landing page
+	app.Get("/projects", func(c fiber.Ctx) error {
+		project := model.Project{}
+		result, err := project.GetAllProjects(-1)
+		if err != nil {
+			// return Render(c, RenderLandingPage())
+			log.Fatalf("Failed to get projects")
+		}
+		return utils.Render(c, views.ProjectsPage(result))
 	})
 
 	// New project page

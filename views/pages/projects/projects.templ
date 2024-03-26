@@ -1,0 +1,229 @@
+package views
+
+import (
+	types "elvinsavio/todo/types"
+	Base "elvinsavio/todo/views/pages/base"
+	"time"
+)
+
+script convertDateToString(date time.Time, id string) {
+	let tmp = document.getElementById(id)
+	const oneMonthAgo = dateFns.subMonths(new Date(), 1);
+	const isOlderThanMonth =  dateFns.isBefore(date, oneMonthAgo);
+
+	if(isOlderThanMonth){
+	tmp.innerHTML = "more than a month"
+	}else{
+	tmp.innerHTML =  dateFns.formatRelative(date, new Date());
+	}
+}
+
+// func ConvertDateToString2(date time.Time) string {
+// 	if date.IsZero() {
+// 		return "Never opened"
+// 	}
+// 	return date.Local().Format("2006-01-02 15:04:05")
+// }
+templ ProjectsPage(projects []types.ProjectList) {
+	@Base.BaseTemplate() {
+		<div class="h-screen flex justify-center items-center">
+			<div class="relative border border-border rounded m-2">
+				<table>
+					<thead>
+						<tr>
+							<th>Song</th>
+							<th>Artist</th>
+							<th>Year</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr><tr class="group">
+							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+							<td>Malcolm Lockyer</td>
+							<td>1961</td>
+						</tr>
+						<tr class="group">
+							<td>Witchy Woman</td>
+							<td>The Eagles</td>
+							<td>1972</td>
+						</tr>
+						<tr class="group">
+							<td>Shining Star</td>
+							<td>Earth, Wind, and Fire</td>
+							<td>1975</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="landing-image"></div>
+	}
+}

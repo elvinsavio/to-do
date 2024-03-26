@@ -107,7 +107,7 @@ func (p *Project) GetAllProjects(limit int) ([]types.ProjectList, error) {
 	})
 
 	// Apply limit if specified
-	if limit > 0 && len(projects) > limit {
+	if limit != -1 && limit > 0 && len(projects) > limit {
 		projects = projects[:limit]
 	}
 

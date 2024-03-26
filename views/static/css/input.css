@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   h1 {
     @apply text-xl;
@@ -13,52 +12,78 @@
   }
 
   p {
-    @apply text-sm
+    @apply text-sm;
   }
 
   a {
-    @apply text-sm hover:text-primary transition-all cursor-pointer hover:underline underline-offset-2
+    @apply text-sm hover:text-primary transition-all cursor-pointer hover:underline underline-offset-2;
   }
 
   input {
-    @apply rounded bg-background border-border border p-1 focus:border-primary focus:ring-0 !outline-none
+    @apply rounded bg-background border-border border p-1 focus:border-primary focus:ring-0 !outline-none;
   }
 
   button {
-    @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary/50 text-primary-foreground shadow hover:bg-primary h-9 px-4 py-2
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary/50 text-primary-foreground shadow hover:bg-primary h-9 px-4 py-2;
   }
-  
+
   ul {
-    @apply list-disc
+    @apply list-disc;
   }
 
   li {
-    @apply text-sm
+    @apply text-sm;
   }
 
   hr {
-    @apply flex-grow border-border
+    @apply flex-grow border-border;
   }
 
+  table {
+    @apply table-auto max-h-[80vh] md:max-h-[60vh]  line-clamp-1 overflow-scroll;
+  }
+
+  th {
+    @apply text-left uppercase border-b border-border p-2 sticky top-0 bg-muted;
+  }
+
+  td {
+    @apply p-2 group-hover:bg-muted;
+  }
+
+  tr {
+    @apply border-b border-border;
+  }
+
+  tbody {
+    @apply overflow-x-scroll  }
+
+  tbody > tr:last-child {
+    @apply border-b-0;
+  }
+
+  tbody:last-child {
+    @apply border-b-0;
+  }
 }
 
 .container {
-  @apply p-1
+  @apply p-1;
 }
 
 .card {
-  @apply border border-border p-1 rounded
+  @apply border border-border p-1 rounded;
 }
 
 .separator-vertical {
-  @apply h-auto w-[1px] bg-border shrink-0
+  @apply h-auto w-[1px] bg-border shrink-0;
 }
 .separator-horizontal {
-  @apply w-auto h-[1px] bg-border shrink-0
+  @apply w-auto h-[1px] bg-border shrink-0;
 }
 
 .icon-link {
-  @apply flex gap-1
+  @apply flex gap-1;
 }
 
 .landing-image {
@@ -69,7 +94,7 @@
 }
 
 .outline-button {
-  @apply bg-background border border-border hover:bg-white/10 
+  @apply bg-background border border-border hover:bg-white/10;
 }
 
 .not-found-image {
