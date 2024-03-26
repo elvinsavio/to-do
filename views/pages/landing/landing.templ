@@ -70,7 +70,7 @@ templ LandingPage(projects []types.ProjectList) {
 									<p class="text-xs text-muted-foreground whitespace-nowrap" id={ "project-list-" + fmt.Sprintf("%v", id) }>
 										@convertDateToString(item.LastOpened, "project-list-"+fmt.Sprintf("%v", id))
 									</p>
-									<p class="hidden group-hover:block z-10 bg-muted p-1 rounded absolute bg-pink-400 top-6 right-0">{ item.Name } </p>
+									<p class="hidden group-hover:block z-10 bg-muted p-1 rounded absolute bg-pink-400 top-6 left-0">{ item.Name } </p>
 								</li>
 							}
 						</ul>
