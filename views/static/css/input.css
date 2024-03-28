@@ -40,19 +40,19 @@
   }
 
   table {
-    @apply table-auto max-h-[80vh] md:max-h-[60vh]  line-clamp-1 overflow-scroll;
+    @apply table-fixed max-h-[80vh] md:max-h-[60vh] max-w-[90vw] line-clamp-1 overflow-scroll;
   }
 
   th {
-    @apply text-left uppercase border-b border-border p-2 sticky top-0 bg-muted;
+    @apply text-left  border-border p-1 sticky top-0 bg-muted;
   }
 
   td {
-    @apply p-2 group-hover:bg-muted;
+    @apply p-1 break-words truncate min-w-20;
   }
 
   tr {
-    @apply border-b border-border;
+    @apply border-b border-border  hover:bg-muted/20;
   }
 
   tbody {
@@ -102,4 +102,13 @@
   background-image: url("/images/404.png");
   background-size: contain;
   background-position: right 50% top 0px;
+}
+
+
+.icon-button {
+  @apply p-2 bg-transparent hover:bg-muted rounded-full
+}
+
+.icon-button > svg {
+  @apply group-hover:text-primary
 }

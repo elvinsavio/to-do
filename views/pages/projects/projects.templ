@@ -1,9 +1,11 @@
 package views
 
 import (
+	Icon "elvinsavio/todo/views/icons"
 	types "elvinsavio/todo/types"
 	Base "elvinsavio/todo/views/pages/base"
 	"time"
+	"fmt"
 )
 
 script convertDateToString(date time.Time, id string) {
@@ -18,12 +20,6 @@ script convertDateToString(date time.Time, id string) {
 	}
 }
 
-// func ConvertDateToString2(date time.Time) string {
-// 	if date.IsZero() {
-// 		return "Never opened"
-// 	}
-// 	return date.Local().Format("2006-01-02 15:04:05")
-// }
 templ ProjectsPage(projects []types.ProjectList) {
 	@Base.BaseTemplate() {
 		<div class="h-screen flex justify-center items-center">
@@ -31,195 +27,31 @@ templ ProjectsPage(projects []types.ProjectList) {
 				<table>
 					<thead>
 						<tr>
-							<th>Song</th>
-							<th>Artist</th>
-							<th>Year</th>
+							<th>Name</th>
+							<th>Last Opened</th>
+							<th>Created At</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr><tr class="group">
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr class="group">
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr class="group">
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr>
+						for id, item := range projects {
+							<tr>
+								<td>
+									<a href={ "project/" + templ.SafeURL(item.Name) } class="truncate">{ item.Name }</a>
+								</td>
+								<td class="text-sm" id={ "project-list-" + fmt.Sprintf("%v", id) }>
+									@convertDateToString(item.LastOpened, "project-list-"+fmt.Sprintf("%v", id))
+								</td>
+								<td>
+									hello world
+								</td>
+								<td class="text-left" dir="rtl">
+									<button class="icon-button group">
+										@Icon.IconDelete()
+									</button>
+								</td>
+							</tr>
+						}
 					</tbody>
 				</table>
 			</div>
