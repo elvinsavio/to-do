@@ -24,7 +24,7 @@
   }
 
   button {
-    @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary/50 text-primary-foreground shadow hover:bg-primary h-9 px-4 py-2;
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  text-primary-foreground shadow hover:bg-primary h-9 px-4 py-2;
   }
 
   ul {
@@ -56,7 +56,8 @@
   }
 
   tbody {
-    @apply overflow-x-scroll  }
+    @apply overflow-x-scroll;
+  }
 
   tbody > tr:last-child {
     @apply border-b-0;
@@ -93,10 +94,6 @@
   background-position: right 70px bottom 0px;
 }
 
-.outline-button {
-  @apply bg-background border border-border hover:bg-white/10;
-}
-
 .not-found-image {
   @apply absolute bottom-0 left-0  h-screen w-full  bg-no-repeat -z-50;
   background-image: url("/images/404.png");
@@ -104,11 +101,37 @@
   background-position: right 50% top 0px;
 }
 
+/* Modal */
+
+.modal {
+  @apply absolute h-screen w-screen backdrop-blur flex items-center justify-center;
+}
+
+.modal-body {
+  @apply bg-card p-3 border-border border rounded flex flex-col gap-2;
+}
+
+.modal-title {
+}
+
+.modal-actions {
+  @apply flex flex-row items-center justify-end gap-2;
+}
+
+/* End Modal */
+
+/* Buttons */
+
+.outline-button {
+  @apply bg-background border border-border hover:bg-white/10;
+}
 
 .icon-button {
-  @apply p-2 bg-transparent hover:bg-muted rounded-full
+  @apply p-2 bg-transparent hover:bg-muted rounded-full aspect-square;
 }
 
 .icon-button > svg {
-  @apply group-hover:text-primary
+  @apply group-hover:text-primary;
 }
+
+/* End Buttons */
