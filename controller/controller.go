@@ -35,6 +35,10 @@ func New(app *fiber.App) *fiber.App {
 		return utils.Render(c, views.ProjectsPage(result))
 	})
 
+	app.Delete("/project/:title", func(c fiber.Ctx) error {
+		return nil
+	})
+
 	// New project page
 	app.Get("/new", func(c fiber.Ctx) error {
 		return utils.Render(c, views.NewPage(""))
