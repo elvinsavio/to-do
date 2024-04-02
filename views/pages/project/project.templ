@@ -1,5 +1,33 @@
 package views
 
-templ ProjectPage(){
-    <div>Hello world</div>
+import (
+	Base "elvinsavio/todo/views/pages/base"
+)
+
+templ ProjectPage() {
+	@Base.BaseTemplate() {
+		<div class="menu">
+			<div x-data="{ open: false }" class="menu-item">
+				<span @click="open=true" class="menu-title">Project</span>
+				<ul x-show="open" @click.outside="open=false" class="menu-dropdown">
+					<li>
+						<a class="dropdown" href="/new">New Project</a>
+					</li>
+					<li>New task</li>
+					<li>New Priority</li>
+					<li>New Tag</li>
+				</ul>
+			</div>
+			<div class="menu-item">
+				<a class="dropdown text-base" href="/help">Help</a>
+			</div>
+		</div>
+		<div class="p-2">
+			<div class="flex justify-end">
+				<a class="outline-button" href="/task/new">
+					New Task
+				</a>
+			</div>
+		</div>
+	}
 }

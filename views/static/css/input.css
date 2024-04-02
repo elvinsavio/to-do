@@ -111,8 +111,9 @@
   @apply bg-card p-3 border-border border rounded flex flex-col gap-2;
 }
 
-.modal-title {
-}
+/* .modal-title {
+
+} */
 
 .modal-actions {
   @apply flex flex-row items-center justify-end gap-2;
@@ -121,6 +122,10 @@
 /* End Modal */
 
 /* Buttons */
+
+a.outline-button {
+  @apply no-underline p-2 rounded hover:text-foreground
+}
 
 .outline-button {
   @apply bg-background border border-border hover:bg-white/10;
@@ -135,3 +140,30 @@
 }
 
 /* End Buttons */
+
+/* Menu */
+
+.menu {
+  @apply flex flex-row gap-2 p-1 border-b border-border rounded;
+}
+
+.menu-title {
+  @apply cursor-pointer hover:text-primary ;
+}
+
+.menu-item {
+  @apply relative text-base
+}
+
+.menu-dropdown {
+  @apply absolute left-0 top-7 w-max bg-background border-border border list-none;
+}
+
+.menu-dropdown > li {
+  @apply hover:bg-muted p-1 cursor-pointer transition-all
+}
+
+a.dropdown {
+  @apply no-underline
+}
+/* End Menu */
