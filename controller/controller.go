@@ -68,6 +68,11 @@ func New(app *fiber.App) *fiber.App {
 		return c.Redirect().To("/project/" + projectName)
 	})
 
+	app.Get("/task/new", func(c fiber.Ctx) error {
+
+		return utils.Render(c, views.NewTaskPage(""))
+	})
+
 	app.Get("/not-found", func(c fiber.Ctx) error {
 		return utils.Render(c, views.NotFoundPage())
 	})

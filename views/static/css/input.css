@@ -66,6 +66,10 @@
   tbody:last-child {
     @apply border-b-0;
   }
+
+  textarea {
+    @apply rounded bg-background border-border border p-1 focus:border-primary focus:ring-0 !outline-none;
+  }
 }
 
 .container {
@@ -124,7 +128,7 @@
 /* Buttons */
 
 a.outline-button {
-  @apply no-underline p-2 rounded hover:text-foreground
+  @apply no-underline p-2 rounded hover:text-foreground;
 }
 
 .outline-button {
@@ -148,11 +152,11 @@ a.outline-button {
 }
 
 .menu-title {
-  @apply cursor-pointer hover:text-primary ;
+  @apply cursor-pointer hover:text-primary;
 }
 
 .menu-item {
-  @apply relative text-base
+  @apply relative text-base;
 }
 
 .menu-dropdown {
@@ -160,10 +164,46 @@ a.outline-button {
 }
 
 .menu-dropdown > li {
-  @apply hover:bg-muted p-1 cursor-pointer transition-all
+  @apply hover:bg-muted p-1 cursor-pointer transition-all;
 }
 
 a.dropdown {
-  @apply no-underline
+  @apply no-underline;
 }
 /* End Menu */
+
+/* New Task */
+
+.new-task-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "new-task-name new-task-name new-task-description new-task-description"
+    "tag tag new-task-description new-task-description"
+    "new-task-priority new-task-priority new-task-due new-task-due"
+    ". . . ."
+    ". . . .";
+}
+
+.new-task-container > div > label {
+  @apply flex flex-col p-1;
+}
+.new-task-name {
+  grid-area: new-task-name;
+}
+.new-task-description {
+  grid-area: new-task-description;
+}
+.tag {
+  grid-area: tag;
+}
+.new-task-priority {
+  grid-area: new-task-priority;
+}
+.new-task-due {
+  grid-area: new-task-due;
+}
+
+/* New Task */

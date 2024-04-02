@@ -1,0 +1,45 @@
+package views
+
+import (
+	Base "elvinsavio/todo/views/pages/base"
+)
+
+templ NewTaskPage(err string) {
+	@Base.BaseTemplate() {
+		<div class="p-2">
+			<div class="flex items-center justify-between">
+				<h1 class="text-2xl">Add a new task</h1>
+				<hr class="mx-2"/>
+				<a href="javascript:history.back()" class="outline-button">Cancel</a>
+			</div>
+			<form class="p-2">
+				<div class="new-task-container">
+
+					<div class="new-task-name">
+						<label>
+							Name
+							<input id="input-name" type="text" name="name" placeholder="Wash Plates"/>
+						</label>
+					</div>
+
+					<div class="new-task-description">
+						<label class="h-full">
+							Description
+							<textarea col="10" class="resize-none w-full h-full" id="input-description" type="text" name="name" placeholder="Wash Plates"></textarea>
+						</label>
+					</div>
+
+					<div class="new-task-tag">
+						<label>
+							Tag
+							<input id="input-name" type="text" name="name" placeholder="Wash Plates"/>
+						</label>
+					</div>
+
+					<div class="new-task-priority"></div>
+					<div class="new-task-due"></div>
+				</div>
+			</form>
+		</div>
+	}
+}
