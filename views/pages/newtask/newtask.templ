@@ -14,30 +14,53 @@ templ NewTaskPage(err string) {
 			</div>
 			<form class="p-2">
 				<div class="new-task-container">
-
 					<div class="new-task-name">
 						<label>
 							Name
 							<input id="input-name" type="text" name="name" placeholder="Wash Plates"/>
 						</label>
 					</div>
-
 					<div class="new-task-description">
 						<label class="h-full">
 							Description
 							<textarea col="10" class="resize-none w-full h-full" id="input-description" type="text" name="name" placeholder="Wash Plates"></textarea>
 						</label>
 					</div>
-
 					<div class="new-task-tag">
 						<label>
 							Tag
-							<input id="input-name" type="text" name="name" placeholder="Wash Plates"/>
+							<select id="countries">
+								<option selected>Tag</option>
+								<option value="US">Bug</option>
+								<option value="CA">Feature</option>
+								<option value="FR">UI Issue</option>
+								<option value="DE">Request</option>
+							</select>
 						</label>
 					</div>
-
-					<div class="new-task-priority"></div>
-					<div class="new-task-due"></div>
+					<div class="new-task-priority">
+						<label>
+							Priority
+							<select id="countries">
+								<option selected>Important</option>
+								<option value="US">Urgent</option>
+								<option value="CA">Low</option>
+								<option value="FR"></option>
+								<option value="DE">Germany</option>
+							</select>
+						</label>
+					</div>
+					<div class="new-task-due">
+						<label>
+							Due
+							<input type="date"/>
+						</label>
+					</div>
+				</div>
+				<div class="flex items-center justify-end mt-3 gap-1">
+					<button class="outline-button">
+						Add
+					</button>
 				</div>
 			</form>
 		</div>

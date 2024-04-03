@@ -19,8 +19,8 @@
     @apply text-sm hover:text-primary transition-all cursor-pointer hover:underline underline-offset-2;
   }
 
-  input {
-    @apply rounded bg-background border-border border p-1 focus:border-primary focus:ring-0 !outline-none;
+  input, textarea, select {
+    @apply rounded bg-background border-border border p-2 focus:border-primary focus:ring-0 !outline-none;
   }
 
   button {
@@ -67,9 +67,6 @@
     @apply border-b-0;
   }
 
-  textarea {
-    @apply rounded bg-background border-border border p-1 focus:border-primary focus:ring-0 !outline-none;
-  }
 }
 
 .container {
@@ -173,22 +170,16 @@ a.dropdown {
 /* End Menu */
 
 /* New Task */
-
 .new-task-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: 0px 0px;
+  @apply flex flex-col sm:grid grid-cols-4 grid-rows-3 gap-2;
   grid-template-areas:
     "new-task-name new-task-name new-task-description new-task-description"
     "tag tag new-task-description new-task-description"
     "new-task-priority new-task-priority new-task-due new-task-due"
-    ". . . ."
-    ". . . .";
 }
 
 .new-task-container > div > label {
-  @apply flex flex-col p-1;
+  @apply flex flex-col;
 }
 .new-task-name {
   grid-area: new-task-name;
@@ -196,7 +187,7 @@ a.dropdown {
 .new-task-description {
   grid-area: new-task-description;
 }
-.tag {
+.new-task-tag {
   grid-area: tag;
 }
 .new-task-priority {
