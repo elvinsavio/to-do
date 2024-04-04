@@ -65,7 +65,7 @@ templ LandingPage(projects []types.ProjectList) {
 						<ul class="max-w-[300px] ">
 							for id, item := range projects {
 								<li class="flex justify-between items-center gap-2 relative group">
-									<a href={ "project/" + templ.SafeURL(item.Name) } class="truncate">{ item.Name }</a>
+									<a href={ "project/" + templ.SafeURL(item.Name) + "/" } class="truncate">{ item.Name }</a>
 									<hr class=""/>
 									<p class="text-xs text-muted-foreground whitespace-nowrap" id={ "project-list-" + fmt.Sprintf("%v", id) }>
 										@convertDateToString(item.LastOpened, "project-list-"+fmt.Sprintf("%v", id))

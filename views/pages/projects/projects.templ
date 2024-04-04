@@ -41,7 +41,7 @@ templ ProjectsPage(projects []types.ProjectList) {
 						for id, item := range projects {
 							<tr>
 								<td>
-									<a href={ "project/" + templ.SafeURL(item.Name) } class="truncate">{ item.Name }</a>
+									<a href={ "project/" + templ.SafeURL(item.Name) + "/" } class="truncate">{ item.Name }</a>
 								</td>
 								<td class="text-sm" id={ "last-opened-" + fmt.Sprintf("%v", id) }>
 									@convertDateToStringRelative(item.LastOpened, "last-opened-"+fmt.Sprintf("%v", id))
