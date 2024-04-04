@@ -2,67 +2,78 @@ package views
 
 import (
 	Base "elvinsavio/todo/views/pages/base"
+	Icon "elvinsavio/todo/views/icons"
 )
 
 templ NewTaskPage(err string) {
 	@Base.BaseTemplate() {
-		<div class="p-2">
-			<div class="flex items-center justify-between">
-				<h1 class="text-2xl">Add a new task</h1>
-				<hr class="mx-2"/>
-				<a href="javascript:history.back()" class="outline-button">Cancel</a>
+		// pop up message for cancel
+		<div x-data="{ cancelMessage: false }">
+			<div x-show="!cancelMessage" class="flex items-center gap-2 p-2 ">
+				<button @click="cancelMessage=true" class="icon-button">
+					@Icon.IconBack()
+				</button>
+				<h1 class="text-xl">Add a new task</h1>
 			</div>
-			<form class="p-2">
-				<div class="new-task-container">
-					<div class="new-task-name">
-						<label>
-							Name
-							<input id="input-name" type="text" name="name" placeholder="Wash Plates"/>
-						</label>
-					</div>
-					<div class="new-task-description">
-						<label class="h-full">
-							Description
-							<textarea col="10" class="resize-none w-full h-full" id="input-description" type="text" name="name" placeholder="Wash Plates"></textarea>
-						</label>
-					</div>
-					<div class="new-task-tag">
-						<label>
-							Tag
-							<select id="countries">
-								<option selected>Tag</option>
-								<option value="US">Bug</option>
-								<option value="CA">Feature</option>
-								<option value="FR">UI Issue</option>
-								<option value="DE">Request</option>
-							</select>
-						</label>
-					</div>
-					<div class="new-task-priority">
-						<label>
-							Priority
-							<select id="countries">
-								<option selected>Important</option>
-								<option value="US">Urgent</option>
-								<option value="CA">Low</option>
-								<option value="FR"></option>
-								<option value="DE">Germany</option>
-							</select>
-						</label>
-					</div>
-					<div class="new-task-due">
-						<label>
-							Due
-							<input type="date"/>
-						</label>
-					</div>
+			<div x-show="cancelMessage" class="m-2 border border-border rounded p-2 flex sm:items-center justify-between gap-1 flex-col sm:flex-row">
+				<div class="">
+					<p class="text-xl font-bold">Are you sure you want to cancel?</p>
+					<p>All data will be lost.</p>
 				</div>
-				<div class="flex items-center justify-end mt-3 gap-1">
-					<button class="outline-button">
-						Add
-					</button>
+				<div class="">
+					<button @click="cancelMessage=false" class="outline-button">Cancel</button>
+					<button @click="history.back()" class="warning-button">Yes</button>
 				</div>
-			</form>
+			</div>
 		</div>
+		<form class="p-2" hx-post="/task/new">
+			<div class="new-task-container">
+				<div class="new-task-name">
+					<label>
+						Name
+						<input required type="text" name="name" placeholder="Wash Plates"/>
+					</label>
+				</div>
+				<div class="new-task-description">
+					<label class="h-full">
+						Description
+						<textarea col="10" class="resize-none w-full h-full" id="input-description" type="text" name="description" placeholder="Wash Plates"></textarea>
+					</label>
+				</div>
+				<div class="new-task-tag">
+					<label>
+						Tag
+						<select required id="countries" name="tag">
+							<option value="">Please select</option>
+							<option value="bug">Bug</option>
+							<option value="feature">Feature</option>
+							<option value="ui-issue">UI Issue</option>
+							<option value="request">Request</option>
+						</select>
+					</label>
+				</div>
+				<div class="new-task-priority">
+					<label>
+						Priority
+						<select required id="priority" name="priority">
+							<option selected>Important</option>
+							<option value="US">Urgent</option>
+							<option value="CA">Low</option>
+						</select>
+					</label>
+				</div>
+				<div class="new-task-due">
+					<label>
+						Due
+						<input type="date" name="date"/>
+					</label>
+				</div>
+			</div>
+			<div class="flex items-center justify-end mt-3 gap-1">
+				<button class="outline-button">
+					Add
+				</button>
+			</div>
+		</form>
 	}
 }
