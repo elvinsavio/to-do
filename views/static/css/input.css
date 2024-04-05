@@ -19,12 +19,15 @@
     @apply text-sm hover:text-primary transition-all cursor-pointer hover:underline underline-offset-2;
   }
 
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     @apply rounded bg-background border-border border p-2 focus:border-primary focus:ring-0 !outline-none;
   }
 
+
   button {
-    @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  text-primary-foreground shadow hover:bg-primary h-9 px-4 py-2;
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  text-primary-foreground shadow h-9 px-4 py-2;
   }
 
   ul {
@@ -66,7 +69,6 @@
   tbody:last-child {
     @apply border-b-0;
   }
-
 }
 
 .container {
@@ -140,6 +142,10 @@ a.outline-button {
   @apply group-hover:text-primary;
 }
 
+.warning-button {
+  @apply border-dashed border border-yellow-500/60   hover:bg-white/10;
+}
+
 /* End Buttons */
 
 /* Menu */
@@ -175,7 +181,7 @@ a.dropdown {
   grid-template-areas:
     "new-task-name new-task-name new-task-description new-task-description"
     "tag tag new-task-description new-task-description"
-    "new-task-priority new-task-priority new-task-due new-task-due"
+    "new-task-priority new-task-priority new-task-due new-task-due";
 }
 
 .new-task-container > div > label {
