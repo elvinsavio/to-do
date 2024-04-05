@@ -43,6 +43,15 @@ func New(app *fiber.App) *fiber.App {
 		return utils.Render(c, views.ProjectPage())
 	})
 
+	// Tasks
+	app.Get("/project/:title/task/new", func(c fiber.Ctx) error {
+		tags, error := model.GetAllTags(c.Params("title"))
+		if error != nil {
+			return utils.Render(c, views.NewTaskPage(error.Error(), nil))
+		}
+		return utils.Render(c, views.NewTaskPage("", tags))
+	})
+
 	// New project page
 	app.Get("/new", func(c fiber.Ctx) error {
 		return utils.Render(c, views.NewPage(""))
@@ -66,11 +75,6 @@ func New(app *fiber.App) *fiber.App {
 		}
 
 		return c.Redirect().To("/project/" + projectName)
-	})
-
-	app.Get("/task/new", func(c fiber.Ctx) error {
-
-		return utils.Render(c, views.NewTaskPage(""))
 	})
 
 	app.Get("/not-found", func(c fiber.Ctx) error {
