@@ -3,9 +3,10 @@ package views
 import (
 	Base "elvinsavio/todo/views/pages/base"
 	Icon "elvinsavio/todo/views/icons"
+	"elvinsavio/todo/types"
 )
 
-templ NewTaskPage(err string) {
+templ NewTaskPage(err string, tag []types.Tag) {
 	@Base.BaseTemplate() {
 		// pop up message for cancel
 		<div x-data="{ cancelMessage: false }">
@@ -45,10 +46,9 @@ templ NewTaskPage(err string) {
 						Tag
 						<select required id="countries" name="tag">
 							<option value="">Please select</option>
-							<option value="bug">Bug</option>
-							<option value="feature">Feature</option>
-							<option value="ui-issue">UI Issue</option>
-							<option value="request">Request</option>
+							for _, item := range tag {
+								<option value={ item.Name }>{ item.Name }</option>
+							}
 						</select>
 					</label>
 				</div>
