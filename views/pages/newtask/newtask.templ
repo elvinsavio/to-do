@@ -27,6 +27,8 @@ templ NewTaskPage(err string, tag []types.Tag) {
 				</div>
 			</div>
 		</div>
+
+		// form, duh
 		<form class="p-2" hx-post="/task/new">
 			<div class="new-task-container">
 				<div class="new-task-name">
@@ -52,16 +54,6 @@ templ NewTaskPage(err string, tag []types.Tag) {
 						</select>
 					</label>
 				</div>
-				<div class="new-task-priority">
-					<label>
-						Priority
-						<select required id="priority" name="priority">
-							<option selected>Important</option>
-							<option value="US">Urgent</option>
-							<option value="CA">Low</option>
-						</select>
-					</label>
-				</div>
 				<div class="new-task-due">
 					<label>
 						Due
@@ -69,9 +61,9 @@ templ NewTaskPage(err string, tag []types.Tag) {
 					</label>
 				</div>
 			</div>
-			<div class="flex items-center justify-end mt-3 gap-1">
+			<div class=" mt-3 gap-1">
 				<button class="outline-button">
-					Add
+					Add Task
 				</button>
 			</div>
 		</form>
