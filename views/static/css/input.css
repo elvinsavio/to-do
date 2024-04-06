@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base {
+  html, .scrollable {
+    @apply scrollbar-thumb-primary scrollbar-thin scrollbar-track-secondary 
+  }
+
   h1 {
     @apply text-xl;
   }
@@ -25,8 +31,8 @@
     @apply rounded bg-background border-border border p-2 focus:border-primary focus:ring-0 !outline-none;
   }
 
-  input[type='checkbox'] {
-    @apply appearance-none w-4 h-4 border border-border hover:border-foreground rounded checked:bg-primary checked:border-transparent focus:outline-none
+  input[type="checkbox"] {
+    @apply appearance-none w-4 h-4 border border-border hover:border-foreground rounded checked:bg-primary checked:border-transparent focus:outline-none;
   }
 
   button {
