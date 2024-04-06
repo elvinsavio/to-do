@@ -27,20 +27,19 @@ templ NewTaskPage(err string, tag []types.Tag) {
 				</div>
 			</div>
 		</div>
-
 		// form, duh
 		<form class="p-2" hx-post="/task/new">
 			<div class="new-task-container">
 				<div class="new-task-name">
 					<label>
 						Name
-						<input required type="text" name="name" placeholder="Wash Plates"/>
+						<input required type="text" name="name" placeholder="Go to school"/>
 					</label>
 				</div>
 				<div class="new-task-description">
 					<label class="h-full">
 						Description
-						<textarea col="10" class="resize-none w-full h-full" id="input-description" type="text" name="description" placeholder="Wash Plates"></textarea>
+						<textarea col="4" class="resize-none w-full h-full" id="input-description" type="text" name="description" placeholder="Wake up at 8 for school."></textarea>
 					</label>
 				</div>
 				<div class="new-task-tag">
