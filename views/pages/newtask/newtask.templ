@@ -28,7 +28,7 @@ templ NewTaskPage(err string, tag []types.Tag) {
 			</div>
 		</div>
 		// form, duh
-		<form class="p-2" hx-post="/task/new">
+		<form class="p-2" hx-post="/task/new" x-data="">
 			<div class="new-task-container">
 				<div class="new-task-name">
 					<label>
@@ -43,15 +43,16 @@ templ NewTaskPage(err string, tag []types.Tag) {
 					</label>
 				</div>
 				<div class="new-task-tag">
-					<label>
-						Tag
-						<select required id="countries" name="tag">
-							<option value="">Please select</option>
-							for _, item := range tag {
-								<option value={ item.Name }>{ item.Name }</option>
-							}
-						</select>
-					</label>
+					<label>Tag</label>
+					<div class="flex flex-col m-1 p-2 rounded border border-border">
+						for _, item := range tag {
+							<label class="flex justify-between items-center gap-2">
+								{ item.Name }
+								<hr/>
+								<input type="checkbox" name={ "tag-" + item.Name }/>
+							</label>
+						}
+					</div>
 				</div>
 				<div class="new-task-due">
 					<label>

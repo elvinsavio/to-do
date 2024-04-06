@@ -25,6 +25,9 @@
     @apply rounded bg-background border-border border p-2 focus:border-primary focus:ring-0 !outline-none;
   }
 
+  input[type='checkbox'] {
+    @apply appearance-none w-4 h-4 border border-border hover:border-foreground rounded checked:bg-primary checked:border-transparent focus:outline-none
+  }
 
   button {
     @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  text-primary-foreground shadow h-9 px-4 py-2;
@@ -177,11 +180,13 @@ a.dropdown {
 
 /* New Task */
 .new-task-container {
-  @apply flex flex-col sm:grid grid-cols-4 grid-rows-3 gap-2 md:max-w-[50%];
+  @apply flex flex-col sm:grid gap-2 md:max-w-[50%];
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     "new-task-name new-task-name new-task-description new-task-description"
-    "tag tag new-task-description new-task-description"
-    "new-task-due new-task-due . . ";
+    "new-task-due new-task-due new-task-description new-task-description"
+    "new-task-tag new-task-tag . . ";
 }
 
 .new-task-container > div > label {
@@ -194,8 +199,13 @@ a.dropdown {
   grid-area: new-task-description;
 }
 .new-task-tag {
-  grid-area: tag;
+  grid-area: new-task-tag;
 }
+
+.new-task-tag > div {
+  @apply h-[100px] overflow-auto;
+}
+
 .new-task-due {
   grid-area: new-task-due;
 }
