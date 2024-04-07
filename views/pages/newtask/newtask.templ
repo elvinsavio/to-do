@@ -44,9 +44,9 @@ templ NewTaskPage(err string, tag []types.Tag) {
 				</div>
 				<div class="new-task-tag">
 					<label>Tag</label>
-					<div class="flex flex-col m-1 p-2 rounded border border-border scrollable">
+					<div>
 						for _, item := range tag {
-							<label class="flex justify-between items-center gap-2">
+							<label class="flex p-1 px-2 rounded justify-between items-center gap-2">
 								{ item.Name }
 								<hr/>
 								<input type="checkbox" name={ "tag-" + item.Name }/>
