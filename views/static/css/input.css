@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
-  html, .scrollable {
-    @apply scrollbar-thumb-primary scrollbar-thin scrollbar-track-secondary 
+  html,
+  .scrollable {
+    @apply scrollbar-thumb-primary scrollbar-thin scrollbar-track-secondary;
   }
 
   h1 {
@@ -192,7 +191,7 @@ a.dropdown {
   grid-template-areas:
     "new-task-name new-task-name new-task-description new-task-description"
     "new-task-due new-task-due new-task-description new-task-description"
-    "new-task-tag new-task-tag . . ";
+    "new-task-tag new-task-tag new-task-tag new-task-tag ";
 }
 
 .new-task-container > div > label {
@@ -209,7 +208,7 @@ a.dropdown {
 }
 
 .new-task-tag > div {
-  @apply h-[100px] overflow-auto;
+  @apply h-[100px] overflow-auto grid grid-cols-2 m-1 gap-x-2 rounded border border-border scrollable;
 }
 
 .new-task-due {
