@@ -1,5 +1,6 @@
 import logging
 import traceback
+from pathlib import Path
 
 
 class Logger:
@@ -8,6 +9,13 @@ class Logger:
     """
 
     def __init__(self, settings: dict[str]) -> None:
+        self.path = settings['path']
+        self.has_output = settings["output"]
+        self.has_stdout = settings["stdout"]
+
+        # creates the logs folder
+        self._create_log_folder()
+
         self.logger = logging.getLogger(__name__)
         logging.basicConfig(
             format="%(levelname)s:%(message)s",
@@ -16,14 +24,19 @@ class Logger:
             level=logging.DEBUG,
             filemode="a" if settings["persist"] else "w",
         )
-        self.has_output = settings["output"]
-        self.has_stdout = settings["stdout"]
 
         if not self.has_output:
             self.logger.info("Logs write false")
 
         if not self.has_stdout:
             self.logger.info("Logs stdout false")
+
+    def _create_log_folder(self):
+        """
+        Creates the log output folder
+        """
+        Path(self.path).mkdir(parents=True, exist_ok=True)
+
 
     def info(self, *string: str) -> None:
         """
