@@ -8,4 +8,4 @@ env.toml
 __pycache__ 
 
 
-logs/*
+logs
