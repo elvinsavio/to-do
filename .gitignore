@@ -1,4 +1,11 @@
+# env files
 env.toml
 
-
+# Virtual enviroments
 .venv
+
+# Chached Files
+__pycache__ 
+
+
+logs/*
