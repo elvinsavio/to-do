@@ -1,8 +1,10 @@
 package utils
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
+	"net/url"
 
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v3"
@@ -42,4 +44,27 @@ func ErrorHandler(ctx fiber.Ctx, err error) error {
 
 	// Return from handler
 	return nil
+}
+
+func ParseFormData(body []byte) (string, error) {
+	form := string(body)
+	query, err := url.ParseQuery(form)
+
+	if err != nil {
+		return "", err
+	}
+
+	obj := map[string]string{}
+	for k, v := range query {
+		if len(v) > 0 {
+			obj[k] = v[0]
+		}
+	}
+
+	out, err := json.Marshal(obj)
+	if err != nil {
+		return "", err
+	}
+
+	return string(out), nil
 }

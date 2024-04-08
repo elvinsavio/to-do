@@ -47,9 +47,18 @@ func New(app *fiber.App) *fiber.App {
 	app.Get("/project/:title/task/new", func(c fiber.Ctx) error {
 		tags, error := model.GetAllTags(c.Params("title"))
 		if error != nil {
-			return utils.Render(c, views.NewTaskPage(error.Error(), nil))
+			return utils.Render(c, views.NewTaskPage(error.Error(), c.Params("title"), nil))
 		}
-		return utils.Render(c, views.NewTaskPage("", tags))
+		return utils.Render(c, views.NewTaskPage("", c.Params("title"), tags))
+	})
+
+	app.Post("/project/:title/task/new", func(c fiber.Ctx) error {
+		form, err := utils.ParseFormData(c.Body())
+		if err != nil {
+			return c.SendString("Something went wrong")
+		}
+
+		return c.SendString(form)
 	})
 
 	// New project page

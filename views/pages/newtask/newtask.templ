@@ -6,7 +6,11 @@ import (
 	"elvinsavio/todo/types"
 )
 
-templ NewTaskPage(err string, tag []types.Tag) {
+func getPostUrl(projectName string) string {
+	return "/project/" + projectName + "/task/new"
+}
+
+templ NewTaskPage(err string, projectName string, tag []types.Tag) {
 	@Base.BaseTemplate() {
 		// pop up message for cancel
 		<div x-data="{ cancelMessage: false }">
@@ -28,7 +32,7 @@ templ NewTaskPage(err string, tag []types.Tag) {
 			</div>
 		</div>
 		// form, duh
-		<form class="p-2" hx-post="/task/new" x-data="">
+		<form class="p-2" hx-post={ templ.EscapeString(getPostUrl(projectName)) } method="POST" >
 			<div class="new-task-container">
 				<div class="new-task-name">
 					<label>
@@ -61,11 +65,9 @@ templ NewTaskPage(err string, tag []types.Tag) {
 					</label>
 				</div>
 			</div>
-			<div class=" mt-3 gap-1">
-				<button class="outline-button">
+				<button type="submit" class="outline-button mt-2">
 					Add Task
 				</button>
-			</div>
 		</form>
 	}
 }
