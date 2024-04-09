@@ -16,3 +16,7 @@ node_modules
 
 # complied static files
 static/css/output.css
+
+# Database
+database
+*.db
