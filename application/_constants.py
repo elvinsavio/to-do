@@ -1,15 +1,18 @@
-# pylint: disable=missing-module-docstring,too-few-public-methods
+# pylint: disable=missing-module-docstring,too-few-public-methods, invalid-name
 import tomllib
 import sys
 
+
 class Constants:
     """
-        Class containing application constants
+    Class containing application constants
     """
+
     def __init__(self) -> None:
         self._env = self._load_toml_file()
         self.APPLICATION = self._env["application"]
         self.LOGS = self._env["logs"]
+        self.DATABASE = self._env["database"]
 
     @staticmethod
     def _load_toml_file():
