@@ -6,6 +6,7 @@
 
 from application._logger import Logger
 from application._constants import Constants
+from application._flask import create_flask_app
 
 
 def setup_application():
@@ -15,4 +16,5 @@ def setup_application():
     constants = Constants()
     logger = Logger(constants.LOGS)
     logger.info("Application initialized (constants, logger)")
-    return (logger, constants)
+    flask = create_flask_app(constants.APPLICATION)
+    return (logger, constants, flask)
