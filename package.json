@@ -1,0 +1,24 @@
+{
+  "name": "to-do",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tailwind": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elvinsavio/to-do.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elvinsavio/to-do/issues"
+  },
+  "homepage": "https://github.com/elvinsavio/to-do#readme",
+  "dependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}
