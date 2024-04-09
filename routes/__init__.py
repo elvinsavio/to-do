@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 
 def create_routes(app: Flask):
@@ -8,6 +8,6 @@ def create_routes(app: Flask):
 
     @app.route("/", methods=["GET"])
     def landing_page():
-        return "hello world"
+        return render_template("landing.html", name="elvin")
 
     return app
