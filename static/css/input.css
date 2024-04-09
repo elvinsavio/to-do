@@ -10,7 +10,24 @@
 
 
 @layer base {
+    a {
+        @apply text-sm
+    }
+
     p {
         @apply text-sm
     }
+
+    h1 {
+        @apply text-base
+    }
+
+}
+
+.list-link>li {
+    @apply flex items-center justify-between gap-1
+}
+
+.list-link>li>a {
+    @apply hover:text-primary hover:underline cursor-pointer w-full underline-offset-2 flex items-center gap-1
 }
