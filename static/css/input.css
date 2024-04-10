@@ -10,9 +10,6 @@
 
 
 @layer base {
-    a {
-        @apply text-sm
-    }
 
     p {
         @apply text-sm
@@ -22,12 +19,27 @@
         @apply text-base
     }
 
+    label {
+        @apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70
+    }
+
+    input {
+        @apply flex h-9  rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50
+    }
+
 }
+
+
+/* links */
+.landing-link {
+    @apply flex items-center gap-2 hover:bg-black/40 rounded w-full py-1 hover:pl-2 transition-all 
+}
+
 
 .list-link>li {
     @apply flex items-center justify-between gap-1
 }
 
-.list-link>li>a {
-    @apply hover:text-primary hover:underline cursor-pointer w-full underline-offset-2 flex items-center gap-1
+.back-button {
+    @apply w-max !no-underline whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2
 }
