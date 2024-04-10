@@ -1,10 +1,12 @@
-from pathlib import Path
-from application._logger import Logger
 import sys
+from pathlib import Path
 
 from sqlalchemy import create_engine, Column, Integer, String, Text, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import SQLAlchemyError
+
+from application._logger import Logger
 
 Base = declarative_base()
 
@@ -25,16 +27,25 @@ class Master_Database:
         self.logger = logger
         self.engine = None
         self.Session = None
+        self._create_path_if_not_exists(self.path)
         self._connect_to_master_db()
 
         Base.metadata.create_all(self.engine)
+
+    @staticmethod
+    def _create_path_if_not_exists(path):
+        """
+        Creates the log output folder
+        """
+        Path(path).mkdir(parents=True, exist_ok=True)
+
 
     def _connect_to_master_db(self):
         try:
             self.engine = create_engine(f"sqlite:///{self.path}/{self.name}.db")
             self.Session = sessionmaker(bind=self.engine)
             self.logger.info("Connected to database")
-        except Exception as e:
+        except SQLAlchemyError as e:
             self.logger.error(e)
             sys.exit("Failed to connect to database!")
 
@@ -54,6 +65,6 @@ class Master_Database:
             session.commit()
             session.close()
             return "ok"
-        except Exception as e:
+        except SQLAlchemyError as e:
             self.logger.error(e)
             return "err"
