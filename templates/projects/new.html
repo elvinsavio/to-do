@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="h-screen flex items-center justify-center">
+    <div class="border-border border p-2 rounded bg-card">
+        <a href="/" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                <path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z" />
+            </svg>Go back</a>
+        <h1 class="ffont-semibold tracking-tight text-2xl my-3">Create a new project</h1>
+        <form class="flex gap-2 flex-col" action="/projects/new" method="post">
+            <div>
+                <label>
+                    Name<sup class="text-primary {{ 'animate-pulse' if error }}">*</sup>
+                </label>
+                <input name="name" placeholder="My super cool project" class="lowercase"/>
+                {% if error %}
+                <span class="text-red-500 text-sm animate-pulse ">{{error}}</span>
+                {% endif %}
+            </div>
+            <div>
+                <label>
+                    Description
+                </label>
+                <textarea name="description" class="min-h-16"
+                    placeholder="My super cool project but with a description"></textarea>
+            </div>
+            <input type="submit" value="Create">
+        </form>
+    </div>
+</div>
+{% endblock %}
