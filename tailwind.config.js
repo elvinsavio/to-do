@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./templates/*.html"],
+  content: ["./templates/*.html", "./templates/*/*.html"],
   theme: {
     fontFamily: {
-      sans: ['"montserrat"','"PT Sans"', 'sans-serif']
+      sans: ['"montserrat"', '"PT Sans"', 'sans-serif']
     },
     extend: {
       colors: {
