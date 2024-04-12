@@ -21,7 +21,7 @@ class Constants:
         Application exits if not found
         """
         try:
-            with open("env.toml", "rb") as f:
+            with open("settings.toml", "rb") as f:
                 data = tomllib.load(f)
                 return data
         except FileNotFoundError:
