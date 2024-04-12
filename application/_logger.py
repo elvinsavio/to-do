@@ -1,8 +1,6 @@
 import logging
 import traceback
 from pathlib import Path
-import inspect
-
 
 class Logger:
     """
@@ -10,9 +8,9 @@ class Logger:
     """
 
     def __init__(self, settings: dict[str]) -> None:
-        self.path = settings["path"]
-        self.has_output = settings["output"]
-        self.has_stdout = settings["stdout"]
+        self.path: str = settings["path"]
+        self.has_output: bool = settings["output"]
+        self.has_stdout: bool = settings["stdout"]
 
         # creates the logs folder
         self._create_log_folder()
