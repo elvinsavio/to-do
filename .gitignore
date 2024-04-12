@@ -1,9 +1,6 @@
-# env files
-env.toml
-
 # Virtual enviroments
 .venv
-
+venv
 # Chached Files
 __pycache__ 
 

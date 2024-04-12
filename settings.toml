@@ -1,0 +1,13 @@
+[application]
+prefix = "to-do"
+name = "to-do"
+debu = true
+
+[logs]
+output = true
+stdout = true
+path = './logs'
+
+[database]
+path = "./database"
+name = "master"
