@@ -1,55 +1,35 @@
+import sqlite3
+import datetime
 import sys
 from pathlib import Path
 
-from sqlalchemy import create_engine, Column, Integer, String, Text, TIMESTAMP
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import SQLAlchemyError
-
-from application._logger import Logger
-
-Base = declarative_base()
-
-
-class Master(Base):
-    __tablename__ = "master"
-    id = Column(Integer, primary_key=True)
-    title = Column(String, unique=True)
-    description = Column(Text)
-    created_at = Column(TIMESTAMP, server_default="CURRENT_TIMESTAMP")
-    last_modified = Column(TIMESTAMP, server_default="CURRENT_TIMESTAMP")
-
-
 class Master_Database:
-    def __init__(self, settings: dict[str, str], logger: Logger):
+    def __init__(self, settings: dict[str, str], logger):
         self.path = settings["path"]
         self.name = settings["name"]
         self.logger = logger
-        self.engine = None
-        self.Session = None
+        self.conn = None
+        self.cursor = None
         self._create_path_if_not_exists(self.path)
-        self._connect_to_master_db()
 
-        Base.metadata.create_all(self.engine)
+        # No database operations should be done in __init__
 
-    @staticmethod
-    def _create_path_if_not_exists(path):
+    def _create_path_if_not_exists(self, path):
         """
         Creates the log output folder
         """
         Path(path).mkdir(parents=True, exist_ok=True)
 
-
-    def _connect_to_master_db(self):
+    async def connect_to_master_db(self):
         try:
-            self.engine = create_engine(f"sqlite:///{self.path}/{self.name}.db")
-            self.Session = sessionmaker(bind=self.engine)
-            self.logger.info("Connected to database")
-        except SQLAlchemyError as e:
+            self.conn = await sqlite3.connect(f"{self.path}/{self.name}.db")
+            self.cursor = self.conn.cursor()
+            self.logger.info(f"Connected to database - {self.name}")
+        except sqlite3.Error as e:
             self.logger.error(e)
-            sys.exit("Failed to connect to database!")
+            sys.exit(f"Failed to connect to database! - {self.name}")
 
-    def create_project(self, name: str, description: str):
+    async def create_project(self, name: str, description: str):
         """
         Inserts a new row into the master db
         args:
@@ -59,12 +39,14 @@ class Master_Database:
             ok, err
         """
         try:
-            session = self.Session()
-            new_project = Master(title=name, description=description)
-            session.add(new_project)
-            session.commit()
-            session.close()
+            await self.connect_to_master_db()  # Await the connection
+            created_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            last_modified = created_at
+            self.cursor.execute("INSERT INTO master (title, description, created_at, last_modified) VALUES (?, ?, ?, ?)",
+                                (name, description, created_at, last_modified))
+            self.conn.commit()
+            self.conn.close()
             return "ok"
-        except SQLAlchemyError as e:
+        except sqlite3.Error as e:
             self.logger.error(e)
             return "err"

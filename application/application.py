@@ -23,10 +23,10 @@ def setup_application():
     os.system('cls' if os.name == 'nt' else 'clear')
     constants = Constants()
     logger = Logger(constants.LOGS)
+    master_db = Master_Database(constants.DATABASE, logger)
     flask = create_flask_app(constants.APPLICATION, logger)
     flask = create_routes(flask)
-    master_db = Master_Database(constants.DATABASE, logger)
 
     end_time = perf_counter() - start_time
     logger.info(f"Application started {end_time}s")
-    return (logger, constants, flask)
+    return (logger, constants, flask, master_db)
