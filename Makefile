@@ -2,7 +2,7 @@ setup:
 	python3.12 -m venv .venv;
 	. .venv/bin/activate;
 	pip3 install -r requirements.txt;
-
+	npm install 
 
 run:
 	@if [ "$(VIRTUAL_ENV)" != "" ]; then\
@@ -10,10 +10,7 @@ run:
 		npm run dev; \
 	else \
 		npm run dev; \
-	fi\
+	fi;\
 
-cleanup:
-	@if [ "$(VIRTUAL_ENV)" != "" ]; then\
-		deactivate
-	fi\
+clean:
 	rm -rf ./.venv ./node_modules ./logs ./database
