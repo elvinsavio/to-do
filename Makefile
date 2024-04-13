@@ -6,12 +6,16 @@ setup:
 	npm install 
 	flask init
 	
+
+start_server:
+	npm run tailwind & flask run --debug
+
 run:
 	@if [ "$(VIRTUAL_ENV)" != "" ]; then\
 		. .venv/bin/activate; \
-		npm run dev; \
+		make start_server; \
 	else \
-		npm run dev; \
+		make start_server; \
 	fi;\
 
 clean:
