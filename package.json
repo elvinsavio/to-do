@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "flask run --debug",
+    "dev": "concurrently --kill-others \"npm run tailwind\" \"flask run --debug\"",
     "tailwind": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +21,8 @@
   "homepage": "https://github.com/elvinsavio/to-do#readme",
   "dependencies": {
     "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
