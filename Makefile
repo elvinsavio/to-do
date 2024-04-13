@@ -1,9 +1,11 @@
 setup:
+	mkdir database
 	python3.12 -m venv .venv;
 	. .venv/bin/activate;
 	pip3 install -r requirements.txt;
 	npm install 
-
+	flask init
+	
 run:
 	@if [ "$(VIRTUAL_ENV)" != "" ]; then\
 		. .venv/bin/activate; \
