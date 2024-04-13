@@ -5,4 +5,15 @@ setup:
 
 
 run:
-	npm run tailwind & flask run --debug && fg
+	@if [ "$(VIRTUAL_ENV)" != "" ]; then\
+		. .venv/bin/activate; \
+		npm run dev; \
+	else \
+		npm run dev; \
+	fi\
+
+cleanup:
+	@if [ "$(VIRTUAL_ENV)" != "" ]; then\
+		deactivate
+	fi\
+	rm -rf ./.venv ./node_modules ./logs ./database
