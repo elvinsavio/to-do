@@ -6,7 +6,6 @@
 from application._logger import Logger
 from application._constants import Constants
 from application._flask import create_flask_app
-from routes import create_routes
 
 
 def setup_application():
@@ -15,7 +14,5 @@ def setup_application():
     """
     constants = Constants()
     logger = Logger(constants.LOGS)
-    flask = create_flask_app(constants.APPLICATION, logger)
-    flask = create_routes(flask)
-
+    flask = create_flask_app(constants.APPLICATION)
     return (logger, constants, flask)
