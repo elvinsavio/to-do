@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 import models.projects as p
 
 _projects = Blueprint(
@@ -23,6 +23,9 @@ def create_project():
     if not project_name:
         return render_template("new.html", error="Name is required")
 
-    p.create_new_project(name=project_name, description=description)
+    res = p.create_new_project(name=project_name, description=description)
+    print(res)
+    if res == "ok":
+        return redirect("/")
 
-    return render_template("new.html")
+    return render_template("new.html", error=res)
