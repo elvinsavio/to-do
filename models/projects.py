@@ -1,6 +1,34 @@
 from datetime import datetime
-from application import database, logger
 from sqlite3 import IntegrityError
+
+from application import database, logger
+
+
+def get_all_projects(limit: int = 1000) -> list[str]:
+    """
+    Query master db and return all projects
+    args:
+        limit: max number of projects to return
+
+    returns:
+        List of projects
+    """
+    db = database("master")
+    cursor = db.cursor()
+
+    result = cursor.execute(
+        """
+        SELECT title, last_modified 
+        FROM master 
+        ORDER BY last_modified DESC
+        LIMIT ?
+        """,
+        (limit,),
+    )
+    data = []
+    for row in result.fetchall():
+        data.append({"name": row[0], "last_modified": row[1]})
+    return data
 
 
 def create_new_project(name: str, description: str = None):
@@ -14,6 +42,10 @@ def create_new_project(name: str, description: str = None):
         # create an entry in the master db
         db = database("master")
         cursor = db.cursor()
+
+        project_db = database(name)
+        project_cursor = project_db.cursor()
+
         time_now = datetime.now()
         cursor.execute(
             """
@@ -25,8 +57,6 @@ def create_new_project(name: str, description: str = None):
         )
 
         # create the projects tables
-        project_db = database(name)
-        project_cursor = project_db.cursor()
 
         # task table
         project_cursor.execute(
@@ -68,7 +98,7 @@ def create_new_project(name: str, description: str = None):
         db.commit()
 
         return "ok"
-    
+
     except IntegrityError as e:
         logger.error("Duplicate warning error :", e)
         return f"{name} already exists."
