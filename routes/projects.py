@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect
 
+from libs import parser
 import models.projects as p
 from application import constants
 
@@ -46,13 +47,15 @@ def create_project():
     if not project_name:
         return render_template("new.html", error="Name is required")
 
+    url = parser.name_to_url_safe(project_name)
+
     # checks if name is same as master db name
     master_db_name = constants.DATABASE.get("name", None)
     if project_name == master_db_name:
         return render_template("new.html", error=f"Name cannot be {master_db_name}")
 
-    res = p.create_new_project(name=project_name, description=description)
+    res = p.create_new_project(name=url, description=description)
     if res == "ok":
-        return redirect("/")
+        return redirect(f"/project/{url}/")
 
     return render_template("new.html", error=res)
