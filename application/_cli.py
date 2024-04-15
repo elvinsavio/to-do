@@ -19,8 +19,8 @@ def register_cli_commands(app: Flask, setting: dict[str, str]):
                                         id INTEGER PRIMARY KEY,
                                         title TEXT UNIQUE,
                                         description TEXT,
-                                        created_at TEXT,
-                                        last_modified TEXT
+                                        created_at TIMESTAMP,
+                                        last_modified TIMESTAMP
                                     )''')
         conn.commit()
         conn.close()
