@@ -25,7 +25,7 @@ module.exports = {
         'destructive-foreground': 'hsl(0, 0%, 98%)',
         border: 'hsl(0, 0%, 14.9%)',
         input: 'hsl(0, 0%, 14.9%)',
-        ring: 'hsl(0, 72.2%, 50.6%)',
+        ring: 'hsl(151, 66%, 21%)',
       }
     },
   },
