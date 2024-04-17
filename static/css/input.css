@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --primary: hsl(151, 66%, 21%)
+}
+
 .spice-font {
     font-family: "Bungee Spice", sans-serif;
     font-weight: 400;
@@ -28,7 +32,7 @@
     }
 
     input[type="submit"] {
-        @apply w-full flex items-center gap-2  !no-underline whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 hover:px-4 py-2 transition-all
+        @apply w-full flex items-center gap-2 !no-underline whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 hover:px-4 py-2 transition-all
     }
 
 }
@@ -36,8 +40,23 @@
 
 /* links */
 .landing-link {
-    @apply flex items-center gap-2 hover:bg-black/40 rounded w-full py-1 hover:pl-2 transition-all 
+    @apply relative flex items-center gap-2 hover:bg-black/40 rounded w-full py-1 hover:pl-2 transition-all
 }
+
+.landing-link::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0px;
+    background-color: var(--primary);
+    left: 0;
+    transition: width linear 0.1s;
+}
+
+.landing-link:hover::after {
+    width: 4px;
+}
+
 
 
 .list-link>li {

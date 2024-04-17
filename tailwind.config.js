@@ -13,7 +13,7 @@ module.exports = {
         'card-foreground': 'hsl(0, 0%, 98%)',
         popover: 'hsl(0, 0%, 3.9%)',
         'popover-foreground': 'hsl(0, 0%, 98%)',
-        primary: 'hsl(0, 72.2%, 50.6%)',
+        primary: 'hsl(151, 66%, 21%)',
         'primary-foreground': 'hsl(0, 85.7%, 97.3%)',
         secondary: 'hsl(0, 0%, 14.9%)',
         'secondary-foreground': 'hsl(0, 0%, 98%)',
