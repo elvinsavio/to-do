@@ -44,13 +44,9 @@
 }
 
 .landing-link::after {
+    @apply  absolute h-full w-0 rounded-full bg-primary left-0;
     content: "";
-    position: absolute;
-    height: 100%;
-    width: 0px;
-    background-color: var(--primary);
-    left: 0;
-    transition: width linear 0.1s;
+    transition: width linear 0.2s;
 }
 
 .landing-link:hover::after {
