@@ -2,6 +2,7 @@ from datetime import datetime
 from sqlite3 import IntegrityError
 
 from application import database, logger
+from libs import parser
 
 
 def get_all_projects(limit: int = 1000) -> list[str]:
@@ -27,7 +28,13 @@ def get_all_projects(limit: int = 1000) -> list[str]:
     )
     data = []
     for row in result.fetchall():
-        data.append({"name": row[0], "last_modified": row[1]})
+        data.append(
+            {
+                "name": parser.url_to_name(row[0]),
+                "url": f"project/{row[0]}",
+                "last_modified": row[1],
+            }
+        )
     return data
 
 
