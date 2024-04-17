@@ -12,7 +12,6 @@ def register_cli_commands(app: Flask, setting: dict[str, str]):
 
     @app.cli.command("init")
     def init():
-        print(path)
         conn = sqlite3.connect(f"{path}/{name}.db")
         cursor = conn.cursor()
         cursor.execute('''CREATE TABLE IF NOT EXISTS master (

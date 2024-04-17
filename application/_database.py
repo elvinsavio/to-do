@@ -74,4 +74,3 @@ class DatabaseInUser(Exception):
     def __init__(self, message, name) -> None:
         super().__init__(message)
         self.name = name
-        print("Exists!")
