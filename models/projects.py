@@ -2,10 +2,10 @@ from datetime import datetime
 from sqlite3 import IntegrityError
 
 from application import database, logger
-from libs import parser
+from libs import parser, date
 
 
-def get_all_projects(limit: int = 1000) -> list[str]:
+def get_projects_with_limit(limit: int = None) -> list[str]:
     """
     Query master db and return all projects
     args:
@@ -14,28 +14,82 @@ def get_all_projects(limit: int = 1000) -> list[str]:
     returns:
         List of projects
     """
-    db = database("master")
-    cursor = db.cursor()
+    try:
 
-    result = cursor.execute(
-        """
-        SELECT title, last_modified 
-        FROM master 
-        ORDER BY last_modified DESC
-        LIMIT ?
-        """,
-        (limit,),
-    )
-    data = []
-    for row in result.fetchall():
-        data.append(
-            {
-                "name": parser.url_to_name(row[0]),
-                "url": f"project/{row[0]}",
-                "last_modified": row[1],
-            }
+        if limit is None:
+            raise ValueError("Limit not specified")
+
+        db = database("master")
+        cursor = db.cursor()
+
+        result = cursor.execute(
+            """
+            SELECT title, last_modified, created_at
+            FROM master 
+            ORDER BY last_modified DESC
+            LIMIT ?
+            """,
+            (limit,),
         )
-    return data
+        data = []
+        for index, row in enumerate(result.fetchall()):
+            data.append(
+                {
+                    "index": index,
+                    "name": parser.url_to_name(row[0]),
+                    "url": f"project/{row[0]}",
+                    "last_modified": row[1],
+                    "created": row[2],
+                }
+            )
+        return data
+    except ValueError as e:
+        logger.error(e)
+        return "Limit not specified"
+    except Exception as e:
+        logger.error(e)
+        return "err"
+    finally:
+        db.close()
+
+
+def get_all_projects() -> list[str]:
+    """
+    Query master db and return all projects
+    args:
+
+    returns:
+        List of projects
+    """
+    try:
+        db = database("master")
+        cursor = db.cursor()
+
+        result = cursor.execute(
+            """
+            SELECT title, last_modified, created_at
+            FROM master 
+            ORDER BY last_modified DESC
+            """,
+        )
+        data = []
+        for index, row in enumerate(result.fetchall()):
+            print(index)
+            data.append(
+                {
+                    "index": index + 1,
+                    "name": parser.url_to_name(row[0]),
+                    "url": f"project/{row[0]}",
+                    "last_modified": date.parse_date("dBY", row[1]),
+                    "created_at": row[2],
+                }
+            )
+        return data
+    except Exception as e:
+        logger.error(e)
+        return "err"
+    finally:
+        db.close()
 
 
 def create_new_project(name: str, description: str = None):
