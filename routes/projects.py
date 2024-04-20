@@ -13,7 +13,7 @@ _projects = Blueprint(
 
 
 @_projects.route("/new", methods=["GET"])
-def new_project():
+def new_project_form():
     """
     Handler for create project page
 
@@ -59,3 +59,18 @@ def create_project():
         return redirect(f"/project/{url}/")
 
     return render_template("new.html", error=res)
+
+
+@_projects.route("/all", methods=["GET"])
+def view_all_project():
+    """
+    Handler for create project page
+
+    request:
+        None
+
+    response:
+        Renders the page
+    """
+    result = p.get_all_projects()
+    return render_template("all.html", projects=result)

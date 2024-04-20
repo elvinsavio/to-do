@@ -35,6 +35,27 @@
         @apply w-full flex items-center gap-2 !no-underline whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 hover:px-4 py-2 transition-all
     }
 
+    table {
+        @apply border-collapse table-auto w-full text-sm m-2 border border-border rounded
+    }
+
+    table>thead>tr>th {
+        @apply text-left p-1
+    }
+
+    table>tbody>tr {
+        @apply bg-card border-b border-border
+    }
+
+    table>tbody>tr:last-child {
+        @apply border-b
+    }
+
+    table>tbody>tr>td {
+        @apply px-2 py-3
+    }
+
+
 }
 
 
@@ -44,7 +65,7 @@
 }
 
 .landing-link::after {
-    @apply  absolute h-full w-0 rounded-full bg-primary left-0;
+    @apply absolute h-full w-0 rounded-full bg-primary left-0;
     content: "";
     transition: width linear 0.2s;
 }
@@ -53,12 +74,25 @@
     width: 4px;
 }
 
-
-
 .list-link>li {
     @apply flex items-center justify-between gap-1
 }
 
+
+/* buttons */
 .back-button {
     @apply flex items-center gap-2 w-max !no-underline whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 hover:px-4 py-2 transition-all
+}
+
+.icon-button {
+    @apply p-1 rounded cursor-pointer hover:border hover:bg-card hover:border-border border border-transparent
+}
+
+
+/* dropdown menu */
+.menu {
+    @apply absolute right-0 p-1 border border-border bg-card rounded z-10 w-max
+}
+.menu>ul>li {
+    @apply hover:text-primary cursor-pointer hover:bg-black/30
 }

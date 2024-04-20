@@ -74,7 +74,6 @@ def get_all_projects() -> list[str]:
         )
         data = []
         for index, row in enumerate(result.fetchall()):
-            print(index)
             data.append(
                 {
                     "index": index + 1,
