@@ -27,4 +27,3 @@ def parse_date(_format: str = None, date: str = None) -> str:
             return datetime_obj.strftime("%d %B, %Y")
         case _:
             raise ValueError("Undefined format")
-

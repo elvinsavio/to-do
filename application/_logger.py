@@ -2,6 +2,7 @@ import logging
 import traceback
 from pathlib import Path
 
+
 class Logger:
     """
     Create a logging class

@@ -1,3 +1,1 @@
 from application import flask
-
-
