@@ -80,7 +80,7 @@ def get_all_projects() -> list[str]:
                     "name": parser.url_to_name(row[0]),
                     "url": f"project/{row[0]}",
                     "last_modified": date.parse_date("dBY", row[1]),
-                    "created_at": row[2],
+                    "created_at": date.parse_date("dBY", row[2]),
                 }
             )
         return data
