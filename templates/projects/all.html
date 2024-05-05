@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %}
-<div class="h-screen flex items-center justify-center">
+<div class="h-screen flex items-center justify-center ">
+  <div class="overflow-scroll max-h-[300px]">
   <table class="border-collapse table-auto w-full text-sm m-2 sm:w-[600px]">
     <thead>
       <tr>
@@ -34,10 +35,14 @@
           <div class="menu" x-show="open" @click.away="open = false">
             <ul>
               <li>
-                <a href="{{ i.url }}"> Open </a>
+                <a href="{{ i.url }}">Open</a>
               </li>
-              <li>Stats</li>
-              <li>Delete</li>
+              <li>
+                <a href="{{ i.url + '/stats' }}">Stats</a>
+              </li>
+              <li>
+                <a href="{{ i.url + '/delete' }}">Delete</a>
+              </li>
             </ul>
           </div>
         </td>
@@ -47,5 +52,6 @@
 
     <tbody></tbody>
   </table>
+</div>
 </div>
 {% endblock %}

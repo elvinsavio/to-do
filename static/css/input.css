@@ -36,7 +36,10 @@
     }
 
     table {
-        @apply border-collapse table-auto w-full text-sm m-2 border border-border rounded
+        @apply border-collapse table-auto w-full text-sm m-2 rounded
+    }
+    table>thead{
+        @apply sticky top-0 bg-background
     }
 
     table>thead>tr>th {
