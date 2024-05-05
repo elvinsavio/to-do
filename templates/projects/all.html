@@ -1,50 +1,51 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="h-screen flex items-center justify-center">
-    <table class="border-collapse table-auto w-full text-sm m-2 sm:w-[600px]">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Last updated</th>
-                <th class="hidden sm:block">Created</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in projects %}
-            <tr>
-                <td>{{i.index}}</td>
-                <td class="col-span-2">{{i.name}}</td>
-                <td>{{i.last_modified}}</td>
-                <td class="hidden sm:block">{{i.created_at}}</td>
-                <td x-data="{ open: true }" class="relative">
-                    <button class="icon-button" @click="open = true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
-                            <path fill="currentColor"
-                                d="M9.5 13a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0" />
-                        </svg>
-                    </button>
-                    <div class="menu" x-show="open"
-                        @click.away="open = false">
-                        <ul>
-                            <li>
-                                Open
-                            </li>
-                            <li>
-                                Stats
-                            </li>
-                            <li>
-                                Delete
-                            </li>
+  <table class="border-collapse table-auto w-full text-sm m-2 sm:w-[600px]">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Last updated</th>
+        <th class="hidden sm:block">Created</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in projects %}
+      <tr>
+        <td>{{i.index}}</td>
+        <td class="col-span-2">{{i.name}}</td>
+        <td>{{i.last_modified}}</td>
+        <td class="hidden sm:block">{{i.created_at}}</td>
+        <td x-data="{ open: false }" class="relative">
+          <button class="icon-button" @click="open = true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill="currentColor"
+                d="M9.5 13a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0"
+              />
+            </svg>
+          </button>
+          <div class="menu" x-show="open" @click.away="open = false">
+            <ul>
+              <li>
+                <a href="{{ i.url }}"> Open </a>
+              </li>
+              <li>Stats</li>
+              <li>Delete</li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
 
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        <tbody>
-
-    </table>
+    <tbody></tbody>
+  </table>
 </div>
 {% endblock %}

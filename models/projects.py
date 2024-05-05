@@ -37,7 +37,7 @@ def get_projects_with_limit(limit: int = None) -> list[str]:
                 {
                     "index": index,
                     "name": parser.url_to_name(row[0]),
-                    "url": f"project/{row[0]}",
+                    "url": f"/project/{row[0]}",
                     "last_modified": row[1],
                     "created": row[2],
                 }
@@ -78,7 +78,7 @@ def get_all_projects() -> list[str]:
                 {
                     "index": index + 1,
                     "name": parser.url_to_name(row[0]),
-                    "url": f"project/{row[0]}",
+                    "url": f"/project/{row[0]}",
                     "last_modified": date.parse_date("dBY", row[1]),
                     "created_at": date.parse_date("dBY", row[2]),
                 }
