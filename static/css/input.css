@@ -94,7 +94,7 @@
 
 /* dropdown menu */
 .menu {
-    @apply absolute right-0 p-1 border border-border bg-card rounded z-10 w-max
+    @apply absolute  p-1 border border-border bg-card rounded z-[999] w-max
 }
 .menu>ul>li {
     @apply hover:text-primary cursor-pointer hover:bg-black/30

@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <div class="h-screen flex items-center justify-center ">
-  <div class="overflow-scroll max-h-[300px]">
+  <div class="overflow-auto max-h-[300px]">
   <table class="border-collapse table-auto w-full text-sm m-2 sm:w-[600px]">
     <thead>
       <tr>
@@ -18,7 +18,7 @@
         <td class="col-span-2">{{i.name}}</td>
         <td>{{i.last_modified}}</td>
         <td class="hidden sm:block">{{i.created_at}}</td>
-        <td x-data="{ open: false }" class="relative">
+        <td x-data="{ open: false }">
           <button class="icon-button" @click="open = true">
             <svg
               xmlns="http://www.w3.org/2000/svg"
