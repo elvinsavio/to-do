@@ -4,6 +4,12 @@ from flask import Flask
 
 
 def register_cli_commands(app: Flask, setting: dict[str, str]):
+    """
+        Create a new master database 
+        for the first time
+
+        Usage: flask init
+    """
     path = setting.get("path", False)
     name = setting.get("name", False)
 
