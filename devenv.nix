@@ -7,7 +7,7 @@
   # https://devenv.sh/packages/
   packages = with pkgs; [ 
 	pkgs.git
-	pkgs.vscodium
+	pkgs.vscode
 	pkgs.python312
 	pkgs.python312Packages.pip	
 	pkgs.python312Packages.virtualenv	 
