@@ -2,16 +2,17 @@ import sys
 import sqlite3
 from flask import Flask
 
+from application._constants import Constants
 
-def register_cli_commands(app: Flask, setting: dict[str, str]):
+def register_cli_commands(app: Flask, setting: Constants):
     """
         Create a new master database 
         for the first time
 
         Usage: flask init
     """
-    path = setting.get("path", False)
-    name = setting.get("name", False)
+    path = setting.APPLICATION.get("path", False)
+    name = setting.APPLICATION.get("name", False)
 
     if not path or not name:
         sys.exit("Variables not found")

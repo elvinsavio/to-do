@@ -1,17 +1,19 @@
 import logging
 import traceback
 from pathlib import Path
+from typing import Union
 
+from application._constants import Constants
 
 class Logger:
     """
     Create a logging class
     """
 
-    def __init__(self, settings: dict[str]) -> None:
-        self.path: str = settings["path"]
-        self.has_output: bool = settings["output"]
-        self.has_stdout: bool = settings["stdout"]
+    def __init__(self, settings: Constants) -> None:
+        self.path: str = settings.LOGS["path"]
+        self.has_output: bool = settings.LOGS["output"]
+        self.has_stdout: bool = settings.LOGS["stdout"]
 
         # creates the logs folder
         self._create_log_folder()
@@ -19,10 +21,10 @@ class Logger:
         self.logger = logging.getLogger(__name__)
         logging.basicConfig(
             format="%(levelname)s:%(module)s:%(message)s",
-            filename=settings["path"] + "/application_logs.log",
+            filename=settings.LOGS["path"] + "/application_logs.log",
             encoding="utf-8",
             level=logging.DEBUG,
-            filemode="a" if settings["persist"] else "w",
+            filemode="a" if settings.LOGS["persist"] else "w",
         )
 
         if not self.has_output:

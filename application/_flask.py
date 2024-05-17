@@ -1,14 +1,16 @@
 from flask import Flask
 
+from application._constants import Constants
 
-def create_flask_app(settings: dict[str, any]) -> Flask:
+
+def create_flask_app(settings: Constants) -> Flask:
     """
     Create an instance of flask
     """
-    app = Flask(settings["name"])
+    app = Flask(settings.APPLICATION["name"])
 
-    if settings["debug"]:
-        app.debug = settings["debug"]
+    if settings.APPLICATION["debug"]:
+        app.debug = settings.APPLICATION["debug"]
 
     from routes import create_routes
 

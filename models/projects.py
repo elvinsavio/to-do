@@ -5,7 +5,7 @@ from application import database, logger
 from libs import parser, date
 
 
-def get_projects_with_limit(limit: int = None) -> list[str]:
+def get_projects_with_limit(limit: int | None = None) -> list[str]:
     """
     Query master db and return all projects
     args:

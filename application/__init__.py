@@ -9,7 +9,7 @@ from application._cli import register_cli_commands
 from application._database import create_database
 
 constants = Constants()
-logger = Logger(constants.LOGS)
-database = create_database(constants.DATABASE)
-flask = create_flask_app(constants.APPLICATION)
-register_cli_commands(flask, constants.DATABASE)
+logger = Logger(constants)
+database = create_database(constants)
+flask = create_flask_app(constants)
+register_cli_commands(flask, constants)

@@ -1,6 +1,7 @@
 # pylint: disable=missing-module-docstring,too-few-public-methods, invalid-name
 import tomllib
 import sys
+from typing import Any, Dict, Union
 
 
 class Constants:

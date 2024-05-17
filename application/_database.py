@@ -3,8 +3,9 @@ from sqlite3 import Connection
 import sys
 from flask import g
 
+from application._constants import Constants
 
-def create_database(settings: dict[str, str]):
+def create_database(settings:  Constants):
     """
     Wrapper class to support constants
     args:
@@ -34,8 +35,8 @@ def create_database(settings: dict[str, str]):
             db = getattr(g, "_database", None)
             if db is None:
 
-                path = settings.get("path", False)
-                name = settings.get("name", False)
+                path = settings.DATABASE.get("path", False)
+                name = settings.DATABASE.get("name", False)
                 db_url = f"{path}/{name}.db"
                 if not path or not name:
                     sys.exit("Environment file not found")
@@ -54,7 +55,7 @@ def create_database(settings: dict[str, str]):
 
         db = getattr(g, f"_database-{db_name}", None)
         if db is None:
-            path = settings.get("path", False)
+            path = settings.DATABASE.get("path", False)
             db_url = f"{path}/{db_name}.db"
             if not path or not db_name:
                 sys.exit("Environment file not found")
