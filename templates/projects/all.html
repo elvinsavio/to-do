@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
-<div class="h-screen flex items-center justify-center ">
-  <div class="overflow-auto max-h-[300px]">
-  <table class="border-collapse table-auto w-full text-sm m-2 sm:w-[600px]">
+<div class="h-screen flex items-center justify-center flex-col ">
+  <div class="overflow-auto max-h-[300px] ">
+  <table class="border-collapse table-auto w-full text-sm sm:w-[600px] ">
     <thead>
       <tr>
         <th>No.</th>
@@ -53,5 +53,6 @@
     <tbody></tbody>
   </table>
 </div>
+<div class="text-sm text-red-500 ">{{ err }}</div>
 </div>
 {% endblock %}

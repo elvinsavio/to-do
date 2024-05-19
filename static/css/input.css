@@ -38,20 +38,17 @@
     table {
         @apply border-collapse table-auto w-full text-sm m-2 rounded
     }
-    table>thead{
-        @apply sticky top-0 bg-background
+
+    table>thead {
+        @apply mt-2 bg-card/90 sticky backdrop-blur-sm top-0 shadow-lg
     }
 
     table>thead>tr>th {
-        @apply text-left p-1
+        @apply text-left p-1 py-2
     }
 
     table>tbody>tr {
-        @apply bg-card border-b border-border
-    }
-
-    table>tbody>tr:last-child {
-        @apply border-b
+        @apply bg-card border-t border-border
     }
 
     table>tbody>tr>td {
@@ -94,8 +91,9 @@
 
 /* dropdown menu */
 .menu {
-    @apply absolute  p-1 border border-border bg-card rounded z-[999] w-max
+    @apply absolute p-1 border border-border bg-card rounded z-[999] w-max
 }
+
 .menu>ul>li {
     @apply hover:text-primary cursor-pointer hover:bg-black/30
 }

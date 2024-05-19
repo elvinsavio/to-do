@@ -68,7 +68,7 @@ def get_all_projects() -> Tuple[Literal["ok", "err"], str | list[str]]:
     try:
         db = database("master")
         cursor = db.cursor()
-
+        # raise Exception
         result = cursor.execute(
             """
             SELECT title, last_modified, created_at
