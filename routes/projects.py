@@ -74,3 +74,12 @@ def view_all_project():
     """
     result = p.get_all_projects()
     return render_template("all.html", projects=result)
+
+
+
+@_projects.route("/<name>/delete", methods=["GET"])
+def delete_project(name: str):
+    res = p.delete_project(name)
+    if res[0]:
+        return redirect("/")
+    return render_template()

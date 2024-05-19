@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 from routes.projects import _projects
-from routes.project import _project
 
 from models import projects
 
@@ -11,7 +10,6 @@ def create_routes(app: Flask):
     """
 
     app.register_blueprint(_projects)
-    app.register_blueprint(_project)
 
 
     @app.route("/", methods=["GET"])

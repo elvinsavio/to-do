@@ -48,7 +48,7 @@ def create_database(settings:  Constants):
         conn_db_name = getattr(g, "conn_db_name", None)
 
         if is_db_conn_present:
-            raise DatabaseInUser("DatabaseInUse", conn_db_name)
+            raise DatabaseInUse("DatabaseInUse", conn_db_name)
 
         g.is_db_conn_present = True
         g.conn_db_name = db_name
@@ -66,7 +66,7 @@ def create_database(settings:  Constants):
     return database
 
 
-class DatabaseInUser(Exception):
+class DatabaseInUse(Exception):
     """
     Exception when another db connection
     is present

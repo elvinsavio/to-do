@@ -1,7 +1,7 @@
 import logging
 import traceback
 from pathlib import Path
-from typing import Union
+from typing import Any, Union
 
 from application._constants import Constants
 
@@ -39,7 +39,7 @@ class Logger:
         """
         Path(self.path).mkdir(parents=True, exist_ok=True)
 
-    def info(self, *string: str) -> None:
+    def info(self, *string: Any) -> None:
         """
         Info level logging
         """
@@ -48,7 +48,7 @@ class Logger:
         if self.has_stdout:
             print(f"INFO:{', '.join(map(str, string))}")
 
-    def debug(self, *string: str) -> None:
+    def debug(self, *string: Any) -> None:
         """
         Debug level logging
         """
@@ -57,7 +57,7 @@ class Logger:
         if self.has_stdout:
             print(f"DEBUG:{', '.join(map(str, string))}")
 
-    def warning(self, *string: str) -> None:
+    def warning(self, *string: Any) -> None:
         """
         Warning level logging
         """
@@ -66,7 +66,7 @@ class Logger:
         if self.has_stdout:
             print(f"WARNING:{', '.join(map(str, string))}")
 
-    def error(self, *string: str) -> None:
+    def error(self, *string: Any) -> None:
         """
         Error level logging
         Logs stack strace regardless of has_output or not

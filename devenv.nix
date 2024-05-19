@@ -11,7 +11,8 @@
 	pkgs.python312
 	pkgs.python312Packages.pip	
 	pkgs.python312Packages.virtualenv	 
-        nodejs_21
+  nodejs_21
+  sqlitebrowser
 ];
 
   # https://devenv.sh/scripts/

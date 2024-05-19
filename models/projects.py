@@ -1,11 +1,13 @@
+import os
+
 from datetime import datetime
 from sqlite3 import IntegrityError
 
-from application import database, logger
+from application import database, logger, constants
 from libs import parser, date
 
 
-def get_projects_with_limit(limit: int | None = None) -> list[str]:
+def get_projects_with_limit(limit: int | None = None) -> list[str] | str:
     """
     Query master db and return all projects
     args:
@@ -45,10 +47,10 @@ def get_projects_with_limit(limit: int | None = None) -> list[str]:
         return data
     except ValueError as e:
         logger.error(e)
-        return "Limit not specified"
+        return "Limit not specified" # type: ignore
     except Exception as e:
         logger.error(e)
-        return "err"
+        return "Something went wrong"
     finally:
         db.close()
 
@@ -91,7 +93,7 @@ def get_all_projects() -> list[str]:
         db.close()
 
 
-def create_new_project(name: str, description: str = None):
+def create_new_project(name: str, description: str | None = None ):
     """
     Create a new project
     args:
@@ -169,3 +171,24 @@ def create_new_project(name: str, description: str = None):
     finally:
         project_cursor.close()
         db.close()
+
+
+
+def delete_project(name: str | None = None): 
+    """
+        Deletes a project
+
+        args:
+            name: name of project to delete
+
+    """
+    if name is None or name == "":
+        return ("err", "Failed to delete, project not found")
+    
+    try:
+        path = constants.DATABASE['path'] + name + ".db" 
+        os.remove(path)
+    except Exception as e:
+        return("err", "Failed to delete, project not found")
+    finally:
+        return("ok", None)
