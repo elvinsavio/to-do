@@ -5,7 +5,7 @@ Date lib
 from datetime import datetime
 
 
-def parse_date(_format: str = None, date: str = None) -> str:
+def parse_date(_format: str | None = None, date: str | None = None) -> str:
     """
     Formats a given string into a specified format
 
