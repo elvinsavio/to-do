@@ -43,14 +43,8 @@ def create_database(settings:  Constants):
                 db = g._database = sqlite3.connect(db_url)
 
             return db
-
-        is_db_conn_present = getattr(g, "is_db_conn_present", False)
-        conn_db_name = getattr(g, "conn_db_name", None)
-
-        if is_db_conn_present:
-            raise DatabaseInUse("DatabaseInUse", conn_db_name)
-
-        g.is_db_conn_present = True
+        
+        # set global db name 
         g.conn_db_name = db_name
 
         db = getattr(g, f"_database-{db_name}", None)
@@ -64,14 +58,3 @@ def create_database(settings:  Constants):
         return db
 
     return database
-
-
-class DatabaseInUse(Exception):
-    """
-    Exception when another db connection
-    is present
-    """
-
-    def __init__(self, message, name) -> None:
-        super().__init__(message)
-        self.name = name

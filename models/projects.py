@@ -1,13 +1,14 @@
 import os
 
 from datetime import datetime
-from sqlite3 import IntegrityError
+from sqlite3 import Cursor, IntegrityError
+from typing import Literal, Tuple
 
 from application import database, logger, constants
 from libs import parser, date
 
 
-def get_projects_with_limit(limit: int | None = None) -> list[str] | str:
+def get_projects_with_limit(limit: int | None = None) ->  Tuple[Literal['ok', "err"], str | list[str]]:
     """
     Query master db and return all projects
     args:
@@ -20,10 +21,9 @@ def get_projects_with_limit(limit: int | None = None) -> list[str] | str:
 
         if limit is None:
             raise ValueError("Limit not specified")
-
+        
         db = database("master")
-        cursor = db.cursor()
-
+        cursor: Cursor = db.cursor()
         result = cursor.execute(
             """
             SELECT title, last_modified, created_at
@@ -44,13 +44,13 @@ def get_projects_with_limit(limit: int | None = None) -> list[str] | str:
                     "created": row[2],
                 }
             )
-        return data
+        return ("ok", data)
     except ValueError as e:
         logger.error(e)
-        return "Limit not specified" # type: ignore
+        return ("err", "Limit not specified") # type: ignore
     except Exception as e:
         logger.error(e)
-        return "Something went wrong"
+        return ("err", "Something went wrong")
     finally:
         db.close()
 
@@ -91,7 +91,6 @@ def get_all_projects() -> list[str]:
         return "err"
     finally:
         db.close()
-
 
 def create_new_project(name: str, description: str | None = None ):
     """
@@ -171,8 +170,6 @@ def create_new_project(name: str, description: str | None = None ):
     finally:
         project_cursor.close()
         db.close()
-
-
 
 def delete_project(name: str | None = None): 
     """

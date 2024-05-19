@@ -14,7 +14,10 @@ def create_routes(app: Flask):
 
     @app.route("/", methods=["GET"])
     def landing_page():
-        data = projects.get_projects_with_limit(5)
-        return render_template("landing.html", projects=data)
+        res, value = projects.get_projects_with_limit(5)
+        if res == "ok":
+            return render_template("landing.html", projects=value)
+
+        return render_template("landing.html", error=value)
 
     return app
