@@ -41,8 +41,8 @@ def create_project():
         redirects to the new created project
     """
     form_data = request.form
-    project_name = form_data.get("name", False)
-    description = form_data.get("description", False)
+    project_name = form_data.get("name")
+    description = form_data.get("description")
 
     if not project_name:
         return render_template("new.html", error="Name is required")
@@ -60,7 +60,6 @@ def create_project():
 
     return render_template("new.html", error=res)
 
-
 @_projects.route("/all", methods=["GET"])
 def view_all_project():
     """
@@ -75,11 +74,9 @@ def view_all_project():
     result = p.get_all_projects()
     return render_template("all.html", projects=result)
 
-
-
-@_projects.route("/<name>/delete", methods=["GET"])
-def delete_project(name: str):
-    res = p.delete_project(name)
-    if res[0]:
-        return redirect("/")
-    return render_template()
+# @_projects.route("/<name>/delete", methods=["GET"])
+# def delete_project(name: str):
+#     res = p.delete_project(name)
+#     if res[0]:
+#         return redirect("/")
+#     # return render_template()

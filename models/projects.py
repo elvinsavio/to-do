@@ -2,13 +2,15 @@ import os
 
 from datetime import datetime
 from sqlite3 import Cursor, IntegrityError
-from typing import Literal, Tuple
+from typing import Literal, Tuple, TypeVar
 
 from application import database, logger, constants
 from libs import parser, date
 
 
-def get_projects_with_limit(limit: int | None = None) ->  Tuple[Literal['ok', "err"], str | list[str]]:
+def get_projects_with_limit(
+    limit: int | None = None,
+) -> Tuple[Literal["ok", "err"], str | list[str]]:
     """
     Query master db and return all projects
     args:
@@ -21,7 +23,7 @@ def get_projects_with_limit(limit: int | None = None) ->  Tuple[Literal['ok', "e
 
         if limit is None:
             raise ValueError("Limit not specified")
-        
+
         db = database("master")
         cursor: Cursor = db.cursor()
         result = cursor.execute(
@@ -47,7 +49,7 @@ def get_projects_with_limit(limit: int | None = None) ->  Tuple[Literal['ok', "e
         return ("ok", data)
     except ValueError as e:
         logger.error(e)
-        return ("err", "Limit not specified") # type: ignore
+        return ("err", "Limit not specified")  # type: ignore
     except Exception as e:
         logger.error(e)
         return ("err", "Something went wrong")
@@ -55,7 +57,7 @@ def get_projects_with_limit(limit: int | None = None) ->  Tuple[Literal['ok', "e
         db.close()
 
 
-def get_all_projects() -> list[str]:
+def get_all_projects() -> Tuple[Literal["ok", "err"], str | list[str]]:
     """
     Query master db and return all projects
     args:
@@ -85,14 +87,17 @@ def get_all_projects() -> list[str]:
                     "created_at": date.parse_date("dBY", row[2]),
                 }
             )
-        return data
+        return ("ok", data)
     except Exception as e:
         logger.error(e)
-        return "err"
+        return ("err", "Failed to get all projects")
     finally:
         db.close()
 
-def create_new_project(name: str, description: str | None = None ):
+
+def create_new_project(
+    name: str, description: str | None = None
+) -> Tuple[Literal["ok", "err"], str | list[str]]:
     """
     Create a new project
     args:
@@ -158,34 +163,36 @@ def create_new_project(name: str, description: str | None = None ):
         project_db.commit()
         db.commit()
 
-        return "ok"
+        return ("ok", "")
 
     except IntegrityError as e:
         logger.error("Duplicate warning error :", e)
-        return f"{name} already exists."
+        return ("err", f"{name} already exists.")
 
     except Exception as e:
         logger.error("Failed to insert into database :", e)
-        return "Something went wrong!"
+        return ("err", "Something went wrong!")
+
     finally:
         project_cursor.close()
         db.close()
 
-def delete_project(name: str | None = None): 
-    """
-        Deletes a project
 
-        args:
-            name: name of project to delete
+def delete_project(name: str | None = None):
+    """
+    Deletes a project
+
+    args:
+        name: name of project to delete
 
     """
     if name is None or name == "":
         return ("err", "Failed to delete, project not found")
-    
+
     try:
-        path = constants.DATABASE['path'] + name + ".db" 
+        path = constants.DATABASE["path"] + name + ".db"
         os.remove(path)
     except Exception as e:
-        return("err", "Failed to delete, project not found")
+        return ("err", "Failed to delete, project not found")
     finally:
-        return("ok", None)
+        return ("ok", None)

@@ -3,7 +3,7 @@ Parser lib
 """
 
 
-def name_to_url_safe(name: str = None) -> str:
+def name_to_url_safe(name: str | None = None) -> str:
     """
     Converts a give string to url safe string
     args:
@@ -15,8 +15,8 @@ def name_to_url_safe(name: str = None) -> str:
     if name is None:
         raise ValueError("Name cannot be empty")
 
-    name = name.strip().split(" ")
-    return "-".join(name)
+    res = name.strip().split(" ")
+    return "-".join(res)
 
 
 def url_to_name(url: str) -> str:
@@ -31,5 +31,5 @@ def url_to_name(url: str) -> str:
     if url is None:
         raise ValueError("url cannot be empty")
 
-    url = url.split("-")
-    return " ".join(url)
+    res = url.split("-")
+    return " ".join(res)
