@@ -11,8 +11,8 @@ def register_cli_commands(app: Flask, setting: Constants):
 
         Usage: flask init
     """
-    path = setting.APPLICATION.get("path", False)
-    name = setting.APPLICATION.get("name", False)
+    path = setting.DATABASE.get("path", False)
+    name = setting.DATABASE.get("name", False)
 
     if not path or not name:
         sys.exit("Variables not found")
