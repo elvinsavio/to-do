@@ -82,7 +82,7 @@ def get_all_projects() -> Tuple[Literal["ok", "err"], str | list[str]]:
                 {
                     "index": index + 1,
                     "name": parser.url_to_name(row[0]),
-                    "url": f"/project/{row[0]}",
+                    "url": f"/projects/{row[0]}",
                     "last_modified": date.parse_date("dBY", row[1]),
                     "created_at": date.parse_date("dBY", row[2]),
                 }
@@ -106,7 +106,9 @@ def create_new_project(
     """
     try:
         # create an entry in the master db
-        db = database("master")
+        db_name = constants.DATABASE.get("name")
+
+        db = database(db_name)
         cursor = db.cursor()
 
         project_db = database(name)
@@ -178,7 +180,7 @@ def create_new_project(
         db.close()
 
 
-def delete_project(name: str | None = None):
+def delete_project(name: str | None = None) -> Tuple[Literal["ok", "err"], str | list[str]]:
     """
     Deletes a project
 
@@ -189,10 +191,30 @@ def delete_project(name: str | None = None):
     if name is None or name == "":
         return ("err", "Failed to delete, project not found")
 
+    db_name = constants.DATABASE.get("name")
+    
+
     try:
+        db = database(db_name)
+        cursor = db.cursor()
+        # raise Exception
+        cursor.execute(
+            f"""
+                DELETE FROM {db_name}
+                WHERE title=(?)
+            """,
+            (name),
+        )
+
+        db.commit()  
+
         path = constants.DATABASE["path"] + name + ".db"
         os.remove(path)
+
+
     except Exception as e:
         return ("err", "Failed to delete, project not found")
     finally:
-        return ("ok", None)
+        cursor.close()
+        db.close()
+        return ("ok", "")
