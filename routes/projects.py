@@ -78,7 +78,7 @@ def view_all_project():
     
     return render_template("all.html", projects=[], err=value)
 
-    
+# This is still broken
 @_projects.route("/<name>/delete", methods=["GET"])
 def delete_project(name: str):
     (res, value) = p.delete_project(name)
